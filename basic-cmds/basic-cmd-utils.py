@@ -18,8 +18,8 @@ class Funni(commands.Cog):
         description = "Gives the ping, I guess.",
         guild_ids = test_guilds
     )
-    async def ping(self, ctx):
-        await ctx.send("I'm not here to play table-tennis, dumbass.")
+    async def ping(self, ctx: ApplicationCommandInteraction):
+        await ctx.response.send_message("I'm not here to play table-tennis, dumbass.")
     
     @commands.command()
     async def echo(self, ctx, member: disnake.Member, *, content):
