@@ -37,17 +37,17 @@ class Activities(commands.Cog):
     async def activities(self, ctx: ApplicationCommandInteraction, vc_channel: disnake.VoiceChannel, activity):
 
         if activity == 'YouTube Together':
-            act_val = 'youtube'
+            act_val = disnake.PartyType.youtube
         elif activity == 'Poker Night':
-            act_val = 'poker'
+            act_val = disnake.PartyType.poker
         elif activity == 'Betrayal.IO':
-            act_val = 'betrayal'
+            act_val = disnake.PartyType.betrayal
         elif activity == 'Fishington.IO':
-            act_val = 'fishing'
+            act_val = disnake.PartyType.fishing
         elif activity == 'Chess In The Park':
-            act_val = 'chess'
+            act_val = disnake.PartyType.chess
         
-        link = await vc_channel.create_invite(target_type = disnake.InviteTarget.embedded_application, target_application = disnake.PartyType.youtube)
+        link = await vc_channel.create_invite(target_type = disnake.InviteTarget.embedded_application, target_application = act_val)
         await ctx.response.send_message(f"Here's the link for {activity} - {link}", ephemeral = True)
 
 def setup(client):
