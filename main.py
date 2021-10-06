@@ -4,9 +4,6 @@ from disnake.ext.commands import ConversionError
 from disnake.utils import get
 from disnake import SlashCommand
 
-from dotenv import load_dotenv
-load_dotenv()
-
 import os
 import random
 import asyncio
