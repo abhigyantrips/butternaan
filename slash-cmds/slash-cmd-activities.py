@@ -47,7 +47,7 @@ class Activities(commands.Cog):
         elif activity == 'Chess In The Park':
             act_val = 'chess'
         
-        link = await vc_channel.create_invite()
+        link = await vc_channel.create_invite(target_application = act_val)
         await ctx.response.send_message(f"Here's the link for {activity} - {link}", ephemeral = True)
 
 def setup(client):
