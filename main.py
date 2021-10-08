@@ -68,7 +68,7 @@ async def on_message_delete(message):
 
     if deleter == message.author:
         desc = f"{message.author.mention} deleted their message in {message.channel.mention}."
-    elif deleter == self.user:
+    elif deleter == client.user:
         pass
     else:
         desc = f"A message by {message.author.mention} was deleted in {message.channel.mention} by {deleter.mention}."
