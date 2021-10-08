@@ -1,6 +1,6 @@
 import disnake
+from disnake import Option, OptionType, OptionChoice
 from disnake.ext import commands
-from discord_slash import cog_ext, SlashContext
 ## DATE AND TIME ##
 from datetime import datetime, timedelta, timezone
 import time
@@ -26,36 +26,36 @@ class Sessions(commands.Cog):
 
 #### 1ST SESSION ####
 
-    @cog_ext.cog_slash(
+    @commands.slash_command(
         name="sessions",
         description = "Set a reminder for a Vedantu/Unacademy session.",
         options = [
-            {
-                "name": "sesh_time",
-                "description": "Enter time in 'HH:MM AM/PM' format.",
-                "type": 3,
-                "required": "true"
-            },
-            {
-                "name": "sesh_name",
-                "description": "Name of the session.",
-                "type": 3,
-                "required": "true"
-            }
+            Option(
+                name = "sesh_time",
+                description = "Enter time in 'HH:MM AM/PM' format.",
+                type = OptionType.string,
+                required = True
+            ),
+            Option(
+                name = "sesh_name",
+                description = "Name of the session.",
+                type = OptionType.string,
+                required = "true"
+            )
         ],
         guild_ids = test_guilds
     )
-    async def sessions(self, ctx: SlashContext, sesh_time, sesh_name):
+    async def sessions(self, ctx: ApplicationCommandInteraction, sesh_time, sesh_name):
         
         validate = validate_time(sesh_time.lower())
             
         if validate != "Ok.":
 
-            await ctx.send("You didn't enter the time correctly, dumbass.")
+            await ctx.response.send_message("You didn't enter the time correctly, dumbass.")
 
         else:
 
-            await ctx.send(f"Oki, noted.\n\n**Session Name:** {sesh_name}\n**Session Time:** {sesh_time}")
+            await ctx.response.send_message(f"Oki, noted.\n\n**Session Name:** {sesh_name}\n**Session Time:** {sesh_time}")
 
             sesh_hour = sesh_time[0:2]
             sesh_min = sesh_time[3:]
@@ -70,7 +70,7 @@ class Sessions(commands.Cog):
 
                 if current_hour == sesh_hour:
                     if current_min == sesh_min:
-                        await ctx.send(f"Oi {ctx.author.mention}! It's **{current_hour}:{current_min}** right now, aka time for **{sesh_name}**.", tts=True, delete_after=120.0)
+                        await ctx.response.send_message(f"Oi {ctx.author.mention}! It's **{current_hour}:{current_min}** right now, aka time for **{sesh_name}**.", tts=True, delete_after=120.0)
                         break
                 await asyncio.sleep(40)
         
