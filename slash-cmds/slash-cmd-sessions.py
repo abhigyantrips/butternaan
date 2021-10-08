@@ -70,7 +70,7 @@ class Sessions(commands.Cog):
 
                 if current_hour == sesh_hour:
                     if current_min == sesh_min:
-                        await ctx.response.send_message(f"Oi {ctx.author.mention}! It's **{current_hour}:{current_min}** right now, aka time for **{sesh_name}**.", tts=True, delete_after=120.0)
+                        await ctx.response.send_message(f"Oi {ctx.author.mention}! It's **{current_hour}:{current_min}** right now, aka time for **{sesh_name}**.", tts=True)
                         break
                 await asyncio.sleep(40)
         
