@@ -1,5 +1,5 @@
 import disnake
-from disnake import Option, OptionType, OptionChoice
+from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteraction
 from disnake.ext import commands
 ## DATE AND TIME ##
 from datetime import datetime, timedelta, timezone
