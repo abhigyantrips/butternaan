@@ -1,3 +1,0 @@
-# Butternaan-Crisp
-
-Go away.
