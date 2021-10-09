@@ -27,11 +27,10 @@ class COVID(commands.Cog):
     )
     async def _stats(
         self, ctx: ApplicationCommandInteraction, 
-        state: str = commands.Param(desc='Enter the State/UT to get info on.', autocomp = autocomp_states)
+        state: str = commands.Param(desc = 'Enter the State/UT to get info on.', autocomp = autocomp_states)
     ):
         
-        covidurl = requests.get('https://api.rootnet.in/covid19-in/stats/latest/')
-        covidjson = json.loads(covidurl.text)
+        covidjson = json.loads(requests.get('https://api.rootnet.in/covid19-in/stats/latest/').text)
 
         embed = disnake.Embed(
             title = 'COVID Statistics',
@@ -65,10 +64,8 @@ class COVID(commands.Cog):
         state: str = commands.Param(desc='Enter the State/UT to get info on.', autocomp = autocomp_states)
     ):
         
-        contacturl = requests.get('https://api.rootnet.in/covid19-in/contacts/')
-        contactjson = json.loads(contacturl.text)
-        resourceurl = requests.get('https://api.rootnet.in/covid19-in/hospitals/beds')
-        resourcejson = json.loads(resourceurl.text)
+        contactjson = json.loads(requests.get('https://api.rootnet.in/covid19-in/contacts/').text)
+        resourcejson = json.loads(requests.get('https://api.rootnet.in/covid19-in/hospitals/beds').text)
 
         embed = disnake.Embed(
             title = 'COVID Statistics',

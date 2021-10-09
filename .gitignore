@@ -1,3 +1,4 @@
 .env
 basic-cmds/__pycache__/
 slash-cmds/__pycache__/
+slash-cmds/slash-cmd-weather.py
