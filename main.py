@@ -47,6 +47,9 @@ for filename in os.listdir('./slash-cmds'):
 @client.event
 async def on_message_edit(before, after):
 
+    if before.content == after.content:
+        pass # Some weird things happen with bots sending embeds, so.
+
     embed = discord.Embed(
     title = "Message Edited.",
     color = 0x303136,
