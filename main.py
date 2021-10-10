@@ -47,7 +47,7 @@ for filename in os.listdir('./slash-cmds'):
 @client.event
 async def on_message_edit(before, after):
 
-    if Exception(disnake.errors.HTTPException):
+    if isinstance(error, disnake.errors.HTTPException):
         pass # Some weird things happen with bots sending embeds, so.
 
     embed = disnake.Embed(

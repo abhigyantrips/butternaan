@@ -25,7 +25,7 @@ class Weather(commands.Cog):
             return autocomplist
     
     @commands.slash_command()
-    @commands.cooldown(2, 30, commands.BucketType.user)
+    @commands.cooldown(3, 30, commands.BucketType.user)
     async def weather(self, ctx: ApplicationCommandInteraction):
         pass
 
@@ -41,19 +41,21 @@ class Weather(commands.Cog):
 
         weatherjson = json.loads(requests.get(f'http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={location}&aqi=yes').text)
 
-        try:
-            embed = disnake.Embed(
-                title = 'Weather Forecast',
-                description = f'Showing data for **{location}**.',
-                color = 0x303136
-            )
-            embed.add_field(name = 'Wind Speed', value = f'{weatherjson["current"]["wind_mph"]} MPH - {weatherjson["current"]["wind_kph"]} KMPH', inline = True)
-            embed.add_field(name = 'Wind Degree, Direction', value = f'{weatherjson["current"]["wind_degree"]}° - {weatherjson["current"]["wind_dir"]}', inline = True)
+        embed = disnake.Embed(
+            title = 'Weather Forecast',
+            description = f'Showing data for **{location}**.',
+            color = 0x303136
+        )
+        embed.add_field(name = 'Temperature', value = f'`{weatherjson["current"]["temp_c"]} °C - {weatherjson["current"]["temp_f"]} °F`', inline = False)
+        embed.add_field(name = 'Condition', value = f'{(weatherjson["current"]["condition"]["text"]).capitalize()}', inline = True)
+        embed.add_field(name = 'Humidity', value = f'{weatherjson["current"]["humidity"]}%', inline = True)        
+        embed.add_field(name = 'Wind Speed', value = f'{weatherjson["current"]["wind_mph"]} MPH - {weatherjson["current"]["wind_kph"]} KMPH', inline = False)
+        embed.add_field(name = 'Wind Degree, Direction', value = f'{weatherjson["current"]["wind_degree"]}° - {weatherjson["current"]["wind_dir"]}', inline = False)
+        embed.add_field(name = 'Air Quality', value = f'```PM 2.5: {round(weatherjson["current"]["air_quality"]["pm2_5"], 1)}\nPM 10: {round(weatherjson["current"]["air_quality"]["pm10"], 1)}```', inline = False)
 
-            embed.set_thumbnail(url = ("http:" + (weatherjson["current"]["condition"]["icon"])))
-            await ctx.response.send_message(embed = embed)
-        except:
-            await ctx.response.send_message(content = "Could not fetch data at this time.")
+        embed.set_thumbnail(url = ("http:" + (weatherjson["current"]["condition"]["icon"])))
+        await ctx.response.send_message(embed = embed)
+
 
     
 def setup(client):
