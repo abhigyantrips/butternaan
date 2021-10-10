@@ -1,4 +1,4 @@
-import disnake as discord
+import disnake
 from disnake.ext import commands
 from disnake.ext.commands import ConversionError
 from disnake.utils import get
@@ -11,12 +11,12 @@ import os
 import random
 import asyncio
 
-client = commands.Bot(command_prefix = "!", intents = discord.Intents().all())
+client = commands.Bot(command_prefix = "!", intents = disnake.Intents().all())
 test_guilds = [860414380444483584]
 
 @client.event
 async def on_ready():
-    await client.change_presence(status = discord.Status.idle, activity = discord.Activity(type= discord.ActivityType.watching, name = "the world burn.",))
+    await client.change_presence(status = disnake.Status.idle, activity = disnake.Activity(type= disnake.ActivityType.watching, name = "the world burn.",))
     print("------------------------------------")
     print('Hello! The bot is back online :]')
 
@@ -47,10 +47,10 @@ for filename in os.listdir('./slash-cmds'):
 @client.event
 async def on_message_edit(before, after):
 
-    if before.content == after.content:
+    if Exception(disnake.errors.HTTPException):
         pass # Some weird things happen with bots sending embeds, so.
 
-    embed = discord.Embed(
+    embed = disnake.Embed(
     title = "Message Edited.",
     color = 0x303136,
     description = f"A message by {before.author.mention} was edited in {before.channel.mention}."
@@ -66,7 +66,7 @@ async def on_message_edit(before, after):
 @client.event
 async def on_message_delete(message):
 
-    async for entry in message.guild.audit_logs(limit = 1, action = discord.AuditLogAction.message_delete):
+    async for entry in message.guild.audit_logs(limit = 1, action = disnake.AuditLogAction.message_delete):
         deleter = entry.user
 
     if deleter == message.author:
@@ -76,7 +76,7 @@ async def on_message_delete(message):
     else:
         desc = f"A message by {message.author.mention} was deleted in {message.channel.mention} by {deleter.mention}."
 
-    embed = discord.Embed(
+    embed = disnake.Embed(
         title = "Message Deletion.",
         color = 0x303136,
         description = desc
