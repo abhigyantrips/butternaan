@@ -46,14 +46,26 @@ class Weather(commands.Cog):
             description = f'Showing data for **{location}**.',
             color = 0x303136
         )
-        embed.add_field(name = 'Temperature', value = f'`{weatherjson["current"]["temp_c"]} °C - {weatherjson["current"]["temp_f"]} °F`', inline = False)
-        embed.add_field(name = 'Condition', value = f'{(weatherjson["current"]["condition"]["text"]).capitalize()}', inline = True)
-        embed.add_field(name = 'Humidity', value = f'{weatherjson["current"]["humidity"]}%', inline = True)        
-        embed.add_field(name = 'Wind Speed', value = f'{weatherjson["current"]["wind_mph"]} MPH - {weatherjson["current"]["wind_kph"]} KMPH', inline = False)
-        embed.add_field(name = 'Wind Degree, Direction', value = f'{weatherjson["current"]["wind_degree"]}° - {weatherjson["current"]["wind_dir"]}', inline = False)
-        embed.add_field(name = 'Air Quality', value = f'```PM 2.5: {round(weatherjson["current"]["air_quality"]["pm2_5"], 1)}\nPM 10: {round(weatherjson["current"]["air_quality"]["pm10"], 1)}```', inline = False)
-
+        embed.add_field(name = 'Temperature', 
+                        value = f'`{weatherjson["current"]["temp_c"]} °C - {weatherjson["current"]["temp_f"]} °F`', 
+                        inline = False)
+        embed.add_field(name = 'Condition', 
+                        value = f'{(weatherjson["current"]["condition"]["text"]).capitalize()}', 
+                        inline = True)
+        embed.add_field(name = 'Humidity', 
+                        value = f'{weatherjson["current"]["humidity"]}%', 
+                        inline = True)        
+        embed.add_field(name = 'Wind Speed', 
+                        value = f'{weatherjson["current"]["wind_mph"]} MPH - {weatherjson["current"]["wind_kph"]} KMPH', 
+                        inline = False)
+        embed.add_field(name = 'Wind Degree, Direction', 
+                        value = f'{weatherjson["current"]["wind_degree"]}° - {weatherjson["current"]["wind_dir"]}', 
+                        inline = False)
+        embed.add_field(name = 'Air Quality', 
+                        value = f'```PM 2.5: {round(weatherjson["current"]["air_quality"]["pm2_5"], 1)}\nPM 10: {round(weatherjson["current"]["air_quality"]["pm10"], 1)}```', 
+                        inline = False)
         embed.set_thumbnail(url = ("http:" + (weatherjson["current"]["condition"]["icon"])))
+        
         await ctx.response.send_message(embed = embed)
 
 
