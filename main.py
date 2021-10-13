@@ -31,6 +31,17 @@ for filename in os.listdir('./basic-cmds'):
     except Exception as e:
         print(f'|  Could not load {filename} due to exception: \n{e}')
 
+print("--------- CONTEXT COMMANDS ---------")
+for filename in os.listdir('./cotxt-cmds'):
+    try:
+        if filename.endswith('.py'):
+            client.load_extension(f'cotxt-cmds.{filename[:-3]}')
+            print(f"|  {filename} loaded.")
+        elif filename == "__pycache__":
+            pass
+    except Exception as e:
+        print(f'|  Could not load {filename} due to exception: \n{e}')
+
 print("---------- SLASH COMMANDS ----------")
 for filename in os.listdir('./slash-cmds'):
     try:
@@ -121,6 +132,17 @@ async def reloadall(ctx):
         try:
             if filename.endswith('.py'):
                 client.reload_extension(f'basic-cmds.{filename[:-3]}')
+                await ctx.send(f"**|  {filename} reloaded.**")
+            elif filename == "__pycache__":
+                pass
+        except Exception as e:
+            await ctx.send(f'**|  Could not reload {filename} due to exception:** \n```{e}```')
+
+    await ctx.send("**--------- CONTEXT COMMANDS ---------**")
+    for filename in os.listdir('./cotxt-cmds'):
+        try:
+            if filename.endswith('.py'):
+                client.reload_extension(f'cotxt-cmds.{filename[:-3]}')
                 await ctx.send(f"**|  {filename} reloaded.**")
             elif filename == "__pycache__":
                 pass
