@@ -2,7 +2,9 @@ import disnake
 from disnake.ext import commands
 from disnake import Option, OptionChoice, OptionType, ApplicationCommandInteraction
 
-test_guilds = [860414380444483584]
+import os
+
+TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
 
 class Activities(commands.Cog):
 
@@ -32,7 +34,7 @@ class Activities(commands.Cog):
                 ],
                 required = True)
         ],
-        guild_ids = test_guilds
+        guild_ids = TEST_GUILDS
     )
     async def activities(self, ctx: ApplicationCommandInteraction, vc_channel: disnake.VoiceChannel, activity):
 

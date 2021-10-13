@@ -2,10 +2,9 @@ import disnake
 from disnake.ext import commands
 from disnake import Option, OptionType
 
-import requests
-import json
+import os, requests, json
 
-test_guilds = [860414380444483584]
+TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
 
 class GitHub(commands.Cog):
 
@@ -15,14 +14,14 @@ class GitHub(commands.Cog):
     @commands.slash_command(
         name = "github", 
         description = "Gets a GitHub user's info", 
-        guild_ids = test_guilds,
         options = [
             Option(
                 name = "user",
                 description = "Enter the username. (Don't mess this up.)", 
                 type = OptionType.string, 
                 required = True)
-        ]
+        ],
+        guild_ids = TEST_GUILDS
     )
     async def github(self, ctx: disnake.ApplicationCommandInteraction, user: str):
     

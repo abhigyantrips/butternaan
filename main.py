@@ -12,7 +12,7 @@ import random
 import asyncio
 
 client = commands.Bot(command_prefix = "!", intents = disnake.Intents().all())
-test_guilds = [860414380444483584]
+test_guilds = [os.environ.get('TEST_GUILDS')]
 
 @client.event
 async def on_ready():

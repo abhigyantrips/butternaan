@@ -4,7 +4,7 @@ from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteract
 
 import os, requests, json
     
-test_guilds = [860414380444483584]
+TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
 
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 
@@ -32,7 +32,7 @@ class Weather(commands.Cog):
     @weather.sub_command(
         name = 'info',
         description = 'Gives information about the weather at an entered location',
-        guild_ids = test_guilds
+        guild_ids = TEST_GUILDS
     )
     async def _forecast(
         self, ctx: ApplicationCommandInteraction,
@@ -65,7 +65,7 @@ class Weather(commands.Cog):
                         value = f'```PM 2.5: {round(weatherjson["current"]["air_quality"]["pm2_5"], 1)}\nPM 10: {round(weatherjson["current"]["air_quality"]["pm10"], 1)}```', 
                         inline = False)
         embed.set_thumbnail(url = ("http:" + (weatherjson["current"]["condition"]["icon"])))
-        
+
         await ctx.response.send_message(embed = embed)
 
 

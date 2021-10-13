@@ -1,10 +1,9 @@
 import disnake
 from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteraction
 from disnake.ext import commands
-## DATE AND TIME ##
+
 from datetime import datetime, timedelta, timezone
-import time
-import asyncio
+import os, asyncio, time
 
 def validate_time(sesh_time):
     if len(sesh_time) != 5:
@@ -17,7 +16,7 @@ def validate_time(sesh_time):
         else:
             return "Ok."
 
-test_guilds=[860414380444483584]
+TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
 
 class Sessions(commands.Cog):
 
@@ -43,7 +42,7 @@ class Sessions(commands.Cog):
                 required = "true"
             )
         ],
-        guild_ids = test_guilds
+        guild_ids = TEST_GUILDS
     )
     async def sessions(self, ctx: ApplicationCommandInteraction, sesh_time, sesh_name):
         
