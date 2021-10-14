@@ -1,8 +1,6 @@
 import disnake
 from disnake.ext import commands
-from disnake.ext.commands import ConversionError
 from disnake.utils import get
-from disnake import SlashCommand
 
 import dotenv
 dotenv.load_dotenv()
