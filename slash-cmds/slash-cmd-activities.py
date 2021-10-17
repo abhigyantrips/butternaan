@@ -4,8 +4,6 @@ from disnake import Option, OptionChoice, OptionType, ApplicationCommandInteract
 
 import os
 
-TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
-
 class Activities(commands.Cog):
 
     def __init__(self, client):
@@ -33,8 +31,7 @@ class Activities(commands.Cog):
                     OptionChoice('Chess In the Park', 'Chess In The Park')
                 ],
                 required = True)
-        ],
-        guild_ids = TEST_GUILDS
+        ]
     )
     async def activities(self, ctx: ApplicationCommandInteraction, vc_channel: disnake.VoiceChannel, activity):
 

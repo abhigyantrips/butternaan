@@ -3,8 +3,6 @@ from disnake.ext import commands
 from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteraction
 
 import os, requests, json
-    
-TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
 
 WEATHER_API_KEY = os.environ.get('WEATHER_API_KEY')
 
@@ -31,8 +29,7 @@ class Weather(commands.Cog):
 
     @weather.sub_command(
         name = 'info',
-        description = 'Gives information about the weather at an entered location',
-        guild_ids = TEST_GUILDS
+        description = 'Gives information about the weather at an entered location'
     )
     async def _forecast(
         self, ctx: ApplicationCommandInteraction,

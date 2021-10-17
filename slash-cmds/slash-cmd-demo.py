@@ -4,8 +4,6 @@ from disnake import Option, OptionChoice, ApplicationCommandInteraction
 
 import os
 
-TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
-
 class Demo(commands.Cog):
 
     def __init__(self, client):
@@ -131,8 +129,7 @@ class Demo(commands.Cog):
                             ],
                             required = False
                     )
-        ],
-    guild_ids = TEST_GUILDS
+        ]
     )
     async def command(self, inter: ApplicationCommandInteraction, 
     required,

@@ -16,8 +16,6 @@ def validate_time(sesh_time):
         else:
             return "Ok."
 
-TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
-
 class Sessions(commands.Cog):
 
     def __init__(self, client):
@@ -41,8 +39,7 @@ class Sessions(commands.Cog):
                 type = OptionType.string,
                 required = "true"
             )
-        ],
-        guild_ids = TEST_GUILDS
+        ]
     )
     async def sessions(self, ctx: ApplicationCommandInteraction, sesh_time, sesh_name):
         

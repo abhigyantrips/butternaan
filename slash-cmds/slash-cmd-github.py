@@ -4,8 +4,6 @@ from disnake import Option, OptionType
 
 import os, requests, json
 
-TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
-
 class GitHub(commands.Cog):
 
     def __init__(self, client):
@@ -20,8 +18,7 @@ class GitHub(commands.Cog):
                 description = "Enter the username. (Don't mess this up.)", 
                 type = OptionType.string, 
                 required = True)
-        ],
-        guild_ids = TEST_GUILDS
+        ]
     )
     async def github(self, ctx: disnake.ApplicationCommandInteraction, user: str):
     

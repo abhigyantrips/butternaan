@@ -4,8 +4,6 @@ from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteract
 
 import os, requests, json
 
-TEST_GUILDS = [os.environ.get('TEST_GUILDS')]
-
 india_states = ['Andhra Pradesh', 'Arunachal Pradesh ', 'Assam', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Odisha', 'Punjab', 'Rajasthan', 'Tamil Nadu', 'Telangana', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh', 'Lakshadweep', 'Delhi']
 
 class COVID(commands.Cog):
@@ -22,8 +20,7 @@ class COVID(commands.Cog):
 
     @covid.sub_command(
         name = 'stats',
-        description = 'Get statistics on COVID cases, per state.',
-        guild_ids = TEST_GUILDS
+        description = 'Get statistics on COVID cases, per state.'
     )
     async def _stats(
         self, ctx: ApplicationCommandInteraction, 
@@ -56,8 +53,7 @@ class COVID(commands.Cog):
     
     @covid.sub_command(
         name = 'resources',
-        description = 'Information regarding Hospitals, Beds & Contacts, per state.',
-        guild_ids = TEST_GUILDS
+        description = 'Information regarding Hospitals, Beds & Contacts, per state.'
     )
     async def _resources(
         self, ctx: ApplicationCommandInteraction,

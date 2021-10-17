@@ -9,8 +9,7 @@ import os
 import random
 import asyncio
 
-client = commands.Bot(command_prefix = "!", intents = disnake.Intents().all())
-test_guilds = [os.environ.get('TEST_GUILDS')]
+client = commands.Bot(command_prefix = "!", intents = disnake.Intents().all(), strip_after_prefix = True, test_guilds = [int(os.environ.get('TEST_GUILDS'))])
 
 @client.event
 async def on_ready():
@@ -56,7 +55,7 @@ for filename in os.listdir('./slash-cmds'):
 @client.event
 async def on_message_edit(before, after):
 
-    if isinstance(error, disnake.errors.HTTPException):
+    if disnake.errors.HTTPException:
         pass # Some weird things happen with bots sending embeds, so.
 
     embed = disnake.Embed(
