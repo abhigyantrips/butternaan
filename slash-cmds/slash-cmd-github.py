@@ -2,7 +2,7 @@ import disnake
 from disnake.ext import commands
 from disnake import Option, OptionType
 
-import os, requests, json
+import requests, json
 
 class GitHub(commands.Cog):
 

@@ -2,8 +2,6 @@ import disnake
 from disnake import ApplicationCommandInteraction, Option, OptionType
 from disnake.ext import commands
 
-import os
-
 class Reverse(commands.Cog):
 
     def __init__(self, client):

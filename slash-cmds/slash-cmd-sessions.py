@@ -3,7 +3,7 @@ from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteract
 from disnake.ext import commands
 
 from datetime import datetime, timedelta, timezone
-import os, asyncio, time
+import asyncio, time
 
 def validate_time(sesh_time):
     if len(sesh_time) != 5:

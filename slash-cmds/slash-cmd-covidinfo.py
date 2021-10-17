@@ -2,7 +2,7 @@ import disnake
 from disnake.ext import commands
 from disnake import Option, OptionType, OptionChoice, ApplicationCommandInteraction
 
-import os, requests, json
+import requests, json
 
 india_states = ['Andhra Pradesh', 'Arunachal Pradesh ', 'Assam', 'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jammu and Kashmir', 'Jharkhand', 'Karnataka', 'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Odisha', 'Punjab', 'Rajasthan', 'Tamil Nadu', 'Telangana', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal', 'Andaman and Nicobar Islands', 'Chandigarh', 'Lakshadweep', 'Delhi']
 

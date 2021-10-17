@@ -2,8 +2,6 @@ import disnake
 from disnake.ext import commands
 from disnake import Option, OptionChoice, OptionType, ApplicationCommandInteraction
 
-import os
-
 class Activities(commands.Cog):
 
     def __init__(self, client):
