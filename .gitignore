@@ -1,4 +1,2 @@
 .env
-basic-cmds/__pycache__/
-cotxt-cmds/__pycache__/
-slash-cmds/__pycache__/
+__pycache__/
