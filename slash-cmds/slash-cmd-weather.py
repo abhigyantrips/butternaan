@@ -12,7 +12,6 @@ class Weather(commands.Cog):
         self.client = client
 
     async def autocomp_weather(ctx: ApplicationCommandInteraction, user_input: str):
-
         if user_input != '' or None:
             autocompjson = list(json.loads(requests.get(f'http://api.weatherapi.com/v1/search.json?key={WEATHER_API_KEY}&q={user_input}').text))
             autocomplist = []
