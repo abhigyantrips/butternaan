@@ -9,6 +9,9 @@ class EventLogging(commands.Cog):
     @commands.Cog.listener()
     async def on_message_edit(self, before, after):
 
+        if before.author.bot:
+            return
+
         embed = disnake.Embed(
         title = "Message Edited.",
         color = 0x303136,
@@ -50,12 +53,6 @@ class EventLogging(commands.Cog):
         embed.add_field(name = f"Deleted Message", value = message.content, inline = False)
 
         await self.client.get_channel(891527413866053653).send(embed = embed) # The ID refers to the server log in my server.
-    
-    @commands.Cog.listener()
-    async def on_command_error(self, error):
-        
-        if isinstance(error, disnake.errors.HTTPException):
-            pass
 
 def setup(client):
     client.add_cog(EventLogging(client))

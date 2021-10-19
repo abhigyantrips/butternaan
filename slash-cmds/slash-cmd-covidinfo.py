@@ -14,7 +14,7 @@ class COVID(commands.Cog):
     async def autocomp_states(ctx: ApplicationCommandInteraction, user_input: str):
         return [state for state in india_states if (user_input.lower() in state) or (user_input in state)]
 
-    @commands.slash_command()
+    @commands.slash_command(name = 'covid')
     async def covid(self, ctx: ApplicationCommandInteraction):
         pass
 
