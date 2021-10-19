@@ -8,7 +8,12 @@ import os
 import random
 import asyncio
 
-client = commands.Bot(command_prefix = "!", intents = disnake.Intents().all(), strip_after_prefix = True, test_guilds = [int(os.environ.get('TEST_GUILDS'))])
+client = commands.Bot(
+    command_prefix = "!", 
+    intents = disnake.Intents().all(), 
+    test_guilds = [int(os.environ.get('TEST_GUILDS'))],
+    help_command = None
+)
 client.loadedcogs = []
 client.unloadedcogs = []
 

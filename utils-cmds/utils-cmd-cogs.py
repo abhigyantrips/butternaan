@@ -76,13 +76,13 @@ class Cogs(commands.Cog):
     ):
 
         if 'basic' in cog:
-            ctx.client.load_extension(f'basic-cmds.{cog}')
+            ctx.client.reload_extension(f'basic-cmds.{cog}')
         elif 'slash' in cog:
-            ctx.client.load_extension(f'slash-cmds.{cog}')
+            ctx.client.reload_extension(f'slash-cmds.{cog}')
         elif 'cotxt' in cog:
-            ctx.client.load_extension(f'cotxt-cmds.{cog}')
+            ctx.client.reload_extension(f'cotxt-cmds.{cog}')
         elif 'utils' in cog:
-            ctx.client.load_extension(f'utils-cmds.{cog}')
+            ctx.client.reload_extension(f'utils-cmds.{cog}')
         
         await ctx.response.send_message(f'Reloaded `{cog}`.')
     
