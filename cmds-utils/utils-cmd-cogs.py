@@ -29,13 +29,13 @@ class Cogs(commands.Cog):
     ):
 
         if 'basic' in cog:
-            ctx.client.load_extension(f'basic-cmds.{cog}')
+            ctx.client.load_extension(f'cmds-basic.{cog}')
         elif 'slash' in cog:
-            ctx.client.load_extension(f'slash-cmds.{cog}')
+            ctx.client.load_extension(f'cmds-slash.{cog}')
         elif 'cotxt' in cog:
-            ctx.client.load_extension(f'cotxt-cmds.{cog}')
+            ctx.client.load_extension(f'cmds-cotxt.{cog}')
         elif 'utils' in cog:
-            ctx.client.load_extension(f'utils-cmds.{cog}')
+            ctx.client.load_extension(f'cmds-utils.{cog}')
         
         ctx.client.loadedcogs.append(cog)
         ctx.client.unloadedcogs.remove(cog)
@@ -52,13 +52,13 @@ class Cogs(commands.Cog):
     ):
 
         if 'basic' in cog:
-            ctx.client.unload_extension(f'basic-cmds.{cog}')
+            ctx.client.unload_extension(f'cmds-basic.{cog}')
         elif 'slash' in cog:
-            ctx.client.unload_extension(f'slash-cmds.{cog}')
+            ctx.client.unload_extension(f'cmds-slash.{cog}')
         elif 'cotxt' in cog:
-            ctx.client.unload_extension(f'cotxt-cmds.{cog}')
+            ctx.client.unload_extension(f'cmds-cotxt.{cog}')
         elif 'utils' in cog:
-            ctx.client.unload_extension(f'utils-cmds.{cog}')
+            ctx.client.unload_extension(f'cmds-utils.{cog}')
 
         ctx.client.loadedcogs.remove(cog)
         ctx.client.unloadedcogs.append(cog)
@@ -76,13 +76,13 @@ class Cogs(commands.Cog):
     ):
 
         if 'basic' in cog:
-            ctx.client.reload_extension(f'basic-cmds.{cog}')
+            ctx.client.reload_extension(f'cmds-basic.{cog}')
         elif 'slash' in cog:
-            ctx.client.reload_extension(f'slash-cmds.{cog}')
+            ctx.client.reload_extension(f'cmds-slash.{cog}')
         elif 'cotxt' in cog:
-            ctx.client.reload_extension(f'cotxt-cmds.{cog}')
+            ctx.client.reload_extension(f'cmds-cotxt.{cog}')
         elif 'utils' in cog:
-            ctx.client.reload_extension(f'utils-cmds.{cog}')
+            ctx.client.reload_extension(f'cmds-utils.{cog}')
         
         await ctx.response.send_message(f'Reloaded `{cog}`.')
     
@@ -98,10 +98,10 @@ class Cogs(commands.Cog):
 
         edit = []
         edit.append('**---------- BASIC COMMANDS ----------**')
-        for filename in os.listdir('./basic-cmds'):
+        for filename in os.listdir('./cmds-basic'):
             try:
                 if filename.endswith('.py'):
-                    ctx.client.reload_extension(f'basic-cmds.{filename[:-3]}')
+                    ctx.client.reload_extension(f'cmds-basic.{filename[:-3]}')
                     edit.append(f'**|  Reloaded {filename}.**')
                 else:
                     pass
@@ -109,10 +109,10 @@ class Cogs(commands.Cog):
                 edit.append(f'**|  Could not reload {filename} due to exception:** \n```{e}```')
 
         edit.append('**--------- CONTEXT COMMANDS ---------**')
-        for filename in os.listdir('./cotxt-cmds'):
+        for filename in os.listdir('./cmds-cotxt'):
             try:
                 if filename.endswith('.py'):
-                    ctx.client.reload_extension(f'cotxt-cmds.{filename[:-3]}')
+                    ctx.client.reload_extension(f'cmds-cotxt.{filename[:-3]}')
                     edit.append(f'**|  Reloaded {filename}.**')
                 else:
                     pass
@@ -120,10 +120,10 @@ class Cogs(commands.Cog):
                 edit.append(f'**|  Could not reload {filename} due to exception:** \n```{e}```')
 
         edit.append('**---------- SLASH COMMANDS ----------**')
-        for filename in os.listdir('./slash-cmds'):
+        for filename in os.listdir('./cmds-slash'):
             try:
                 if filename.endswith('.py'):
-                    ctx.client.reload_extension(f'slash-cmds.{filename[:-3]}')
+                    ctx.client.reload_extension(f'cmds-slash.{filename[:-3]}')
                     edit.append(f'**|  Reloaded {filename}.**')
                 else:
                     pass
@@ -131,10 +131,10 @@ class Cogs(commands.Cog):
                 edit.append(f'**|  Could not reload {filename} due to exception:** \n```{e}```')
 
         edit.append('**---------- UTILS COMMANDS ----------**')
-        for filename in os.listdir('./utils-cmds'):
+        for filename in os.listdir('./cmds-utils'):
             try:
                 if filename.endswith('.py'):
-                    ctx.client.reload_extension(f'utils-cmds.{filename[:-3]}')
+                    ctx.client.reload_extension(f'cmds-utils.{filename[:-3]}')
                     edit.append(f'**|  Reloaded {filename}.**')
                 else:
                     pass

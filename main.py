@@ -21,10 +21,10 @@ client.unloadedcogs = []
 async def on_ready():
     await client.change_presence(status = disnake.Status.idle, activity = disnake.Activity(type= disnake.ActivityType.watching, name = "the world burn.",))
     print("---------- BASIC COMMANDS ----------")
-    for filename in os.listdir('./basic-cmds'):
+    for filename in os.listdir('./cmds-basic'):
         try:
             if filename.endswith('.py'):
-                client.load_extension(f'basic-cmds.{filename[:-3]}')
+                client.load_extension(f'cmds-basic.{filename[:-3]}')
                 client.loadedcogs.append(filename[:-3])
                 print(f"|  Loaded {filename}.")
             else:
@@ -33,10 +33,10 @@ async def on_ready():
             print(f'|  Could not load {filename} due to exception: \n{e}')
 
     print("--------- CONTEXT COMMANDS ---------")
-    for filename in os.listdir('./cotxt-cmds'):
+    for filename in os.listdir('./cmds-cotxt'):
         try:
             if filename.endswith('.py'):
-                client.load_extension(f'cotxt-cmds.{filename[:-3]}')
+                client.load_extension(f'cmds-cotxt.{filename[:-3]}')
                 client.loadedcogs.append(filename[:-3])
                 print(f"|  Loaded {filename}.")
             else:
@@ -45,10 +45,10 @@ async def on_ready():
             print(f'|  Could not load {filename} due to exception: \n{e}')
 
     print("---------- SLASH COMMANDS ----------")
-    for filename in os.listdir('./slash-cmds'):
+    for filename in os.listdir('./cmds-slash'):
         try:
             if filename.endswith('.py'):
-                client.load_extension(f'slash-cmds.{filename[:-3]}')
+                client.load_extension(f'cmds-slash.{filename[:-3]}')
                 client.loadedcogs.append(filename[:-3])
                 print(f"|  Loaded {filename}.")
             else:
@@ -57,10 +57,10 @@ async def on_ready():
             print(f'|  Could not load {filename} due to exception: \n{e}')
 
     print("---------- UTILS COMMANDS ----------")
-    for filename in os.listdir('./utils-cmds'):
+    for filename in os.listdir('./cmds-utils'):
         try:
             if filename.endswith('.py'):
-                client.load_extension(f'utils-cmds.{filename[:-3]}')
+                client.load_extension(f'cmds-utils.{filename[:-3]}')
                 client.loadedcogs.append(filename[:-3])
                 print(f"|  Loaded {filename}.")
             else:
