@@ -19,7 +19,15 @@ client.unloadedcogs = []
 
 @client.event
 async def on_ready():
-    await client.change_presence(status = disnake.Status.idle, activity = disnake.Activity(type= disnake.ActivityType.watching, name = "the world burn.",))
+
+    await client.change_presence(
+        status = disnake.Status.idle, 
+        activity = disnake.Activity(
+            type = disnake.ActivityType.watching, 
+            name = "the world burn."
+        )
+    )
+    
     print("---------- BASIC COMMANDS ----------")
     for filename in os.listdir('./cmds-basic'):
         try:
