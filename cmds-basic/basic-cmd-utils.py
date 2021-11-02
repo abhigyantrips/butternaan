@@ -16,7 +16,7 @@ class Funni(commands.Cog):
         description = 'Gives the ping, I guess.'
     )
     async def ping(self, ctx: ApplicationCommandInteraction):
-        await ctx.response.send_message('I\'m not here to play table-tennis, dumbass.')
+        await ctx.response.send_message('I\'m not here to play table tennis, dumbass.')
     
     @commands.command()
     async def echo(self, ctx, member: disnake.Member, *, content):
