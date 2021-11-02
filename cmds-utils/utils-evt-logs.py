@@ -13,15 +13,15 @@ class EventLogging(commands.Cog):
             return
 
         embed = disnake.Embed(
-        title = "Message Edited.",
+        title = 'Message Edited.',
         color = 0x303136,
-        description = f"A message by {before.author.mention} was edited in {before.channel.mention}."
+        description = f'A message by {before.author.mention} was edited in {before.channel.mention}.'
         )
 
         embed.set_thumbnail(url = before.author.avatar)
 
-        embed.add_field(name = "Before", value = before.content, inline = False)
-        embed.add_field(name = "After", value = after.content, inline = False)
+        embed.add_field(name = 'Before', value = before.content, inline = False)
+        embed.add_field(name = 'After', value = after.content, inline = False)
 
         await self.client.get_channel(891527413866053653).send(embed = embed) # The ID refers to the server log in my server.
 
@@ -32,12 +32,12 @@ class EventLogging(commands.Cog):
             deleter = entry.user
 
         if deleter == message.author:
-            desc = f"{message.author.mention} deleted their message in {message.channel.mention}."
+            desc = f'{message.author.mention} deleted their message in {message.channel.mention}.'
         else:
-            desc = f"A message by {message.author.mention} was deleted in {message.channel.mention} by {deleter.mention}."
+            desc = f'A message by {message.author.mention} was deleted in {message.channel.mention} by {deleter.mention}.'
 
         embed = disnake.Embed(
-            title = "Message Deletion.",
+            title = 'Message Deletion.',
             color = 0x303136,
             description = desc
         )
@@ -46,9 +46,9 @@ class EventLogging(commands.Cog):
 
         if message.reference is not None and not message.is_system:
             ref_msg = client.get_message(message.reference.id)
-            embed.add_field(name = f"Replying to {ref_msg.author.mention}", value = ref_msg.content, inline = False)
+            embed.add_field(name = f'Replying to {ref_msg.author.mention}', value = ref_msg.content, inline = False)
         
-        embed.add_field(name = f"Deleted Message", value = message.content, inline = False)
+        embed.add_field(name = f'Deleted Message', value = message.content, inline = False)
 
         await self.client.get_channel(891527413866053653).send(embed = embed) # The ID refers to the server log in my server.
 

@@ -8,18 +8,18 @@ class Activities(commands.Cog):
         self.client = client
 
     @commands.slash_command(
-        name = "activity",
-        description = "Use Discord Activities.",
+        name = 'activity',
+        description = 'Use Discord Activities.',
         options = [
             Option(
-                name = "vc_channel", 
-                description = "The channel to stream the activity in.", 
+                name = 'vc_channel', 
+                description = 'The channel to stream the activity in.', 
                 type = OptionType.channel,
                 channel_types = [disnake.ChannelType.voice], 
                 required = True),
             Option(
-                name = "activity", 
-                description = "The type of activity to stream.", 
+                name = 'activity', 
+                description = 'The type of activity to stream.', 
                 type = OptionType.string,
                 choices = [
                     OptionChoice('YouTube Together', 'YouTube Together'),
@@ -45,7 +45,7 @@ class Activities(commands.Cog):
             act_val = disnake.PartyType.chess
         
         link = await vc_channel.create_invite(target_type = disnake.InviteTarget.embedded_application, target_application = act_val)
-        await ctx.response.send_message(f"Here's the link for {activity} - {link}", ephemeral = True)
+        await ctx.response.send_message(f'Here\'s the link for {activity} - {link}', ephemeral = True)
 
 def setup(client):
     client.add_cog(Activities(client))

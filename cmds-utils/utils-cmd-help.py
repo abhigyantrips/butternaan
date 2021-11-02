@@ -18,5 +18,6 @@ class HelpCommand(commands.Cog):
     async def helpslash(self, ctx: ApplicationCommandInteraction):
         await ctx.response.send_message("Help yourself.", ephemeral = True)
 
+
 def setup(client):
     client.add_cog(HelpCommand(client))

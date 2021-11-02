@@ -146,5 +146,6 @@ class Cogs(commands.Cog):
         edited = '\n'.join(edit)
         await ctx.edit_original_message(content = edited)
 
+
 def setup(client):
     client.add_cog(Cogs(client))

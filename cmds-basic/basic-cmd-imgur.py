@@ -16,8 +16,8 @@ def upload_image(images):
         
         response = imgur_client.upload_from_url(image, anon=True)
 
-        links.append(response["link"])
-        Copy(response["link"])
+        links.append(response['link'])
+        Copy(response['link'])
 
     return ('\n'.join(links))
 
@@ -35,26 +35,26 @@ class Imgur(commands.Cog):
             link = upload_image(files)
 
             embed = disnake.Embed(
-                title = "Image Uploaded.",
-                description = "The image has been successfully uploaded, and the link has been copied to your clipboard.",
+                title = 'Image Uploaded.',
+                description = 'The image has been successfully uploaded, and the link has been copied to your clipboard.',
                 color = 0x303136
             )
 
-            msg_content = "**Upload Success.**"
-            embed.add_field(name = "Imgur Link(s)", value = link)
+            msg_content = '**Upload Success.**'
+            embed.add_field(name = 'Imgur Link(s)', value = link)
             embed.set_image(url = link)
-            embed.set_footer(text = f"Requested by {ctx.message.author} [{ctx.message.author.id}]")
+            embed.set_footer(text = f'Requested by {ctx.message.author} [{ctx.message.author.id}]')
 
         except:
             
             embed = disnake.Embed(
-                title = "Image Upload Failure.",
-                description = "Either the file format is unsupported, or the API could not be reached a this time.",
+                title = 'Image Upload Failure.',
+                description = 'Either the file format is unsupported, or the API could not be reached a this time.',
                 color = 0x303136
             )
 
-            msg_content = "**Upload Failure.**"
-            embed.set_footer(text = f"Requested by {ctx.message.author} [{ctx.message.author.id}]")
+            msg_content = '**Upload Failure.**'
+            embed.set_footer(text = f'Requested by {ctx.message.author} [{ctx.message.author.id}]')
 
         await ctx.message.delete()                
         await ctx.send(content = msg_content, embed = embed)

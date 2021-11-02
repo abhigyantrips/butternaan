@@ -64,7 +64,6 @@ class Weather(commands.Cog):
 
         await ctx.response.send_message(embed = embed)
 
-
     
 def setup(client):
     client.add_cog(Weather(client))

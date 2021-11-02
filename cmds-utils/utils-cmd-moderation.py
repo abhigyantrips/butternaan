@@ -121,5 +121,6 @@ class Moderation(commands.Cog):
         
         await ctx.guild.ban(user, reason = reason, delete_message_days = 0)
 
+
 def setup(client):
     client.add_cog(Moderation(client))
