@@ -19,6 +19,7 @@ class Funni(commands.Cog):
         await ctx.response.send_message('I\'m not here to play table tennis, dumbass.')
     
     @commands.command()
+    @commands.is_owner()
     async def echo(self, ctx, member: disnake.Member, *, content):
 
         messages = await ctx.channel.history(limit = 11).flatten()
