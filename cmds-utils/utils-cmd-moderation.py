@@ -52,6 +52,7 @@ class Moderation(commands.Cog):
             Option("user", "The user to delete messages of.", OptionType.user, True)
         ],
     )
+    @commands.bot_has_permissions(manage_messages=True)
     async def prune(self, ctx: ApplicationCommandInteraction, user: disnake.Member):
 
         await ctx.response.send_message(
@@ -87,6 +88,7 @@ class Moderation(commands.Cog):
             ),
         ],
     )
+    @commands.bot_has_permissions(manage_messages=True)
     async def channelprune(
         self,
         ctx: ApplicationCommandInteraction,
@@ -119,6 +121,7 @@ class Moderation(commands.Cog):
             Option("reason", "Reason for kicking the user.", OptionType.string, False),
         ],
     )
+    @commands.bot_has_permissions(administrator=True)
     async def kick(self, ctx: ApplicationCommandInteraction, user, reason=None):
 
         if reason == None or " ":
@@ -142,6 +145,7 @@ class Moderation(commands.Cog):
             Option("reason", "Reason for banning the user.", OptionType.string, False),
         ],
     )
+    @commands.bot_has_permissions(administrator=True)
     async def ban(self, ctx: ApplicationCommandInteraction, user, reason=None):
 
         if reason == None or " ":

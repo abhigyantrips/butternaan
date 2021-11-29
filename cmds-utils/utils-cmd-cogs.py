@@ -32,6 +32,7 @@ class Cogs(commands.Cog):
     @cogutils.sub_command(
         name="load", description="Load a cog/extension (autocomplete options)."
     )
+    @commands.has_permissions(manage_guild=True)
     async def cogload(
         self,
         ctx: ApplicationCommandInteraction,
@@ -58,6 +59,7 @@ class Cogs(commands.Cog):
     @cogutils.sub_command(
         name="unload", description="Unload a cog/extension (autocomplete options)."
     )
+    @commands.has_permissions(manage_guild=True)
     async def cogunload(
         self,
         ctx: ApplicationCommandInteraction,
@@ -84,6 +86,7 @@ class Cogs(commands.Cog):
     @cogutils.sub_command(
         name="reload", description="Reload a cog/extension (autocomplete options)."
     )
+    @commands.has_permissions(manage_guild=True)
     async def cogreload(
         self,
         ctx: ApplicationCommandInteraction,
@@ -105,6 +108,7 @@ class Cogs(commands.Cog):
         await ctx.response.send_message(f"Reloaded `{cog}`.")
 
     @cogutils.sub_command(name="reloadall", description="Reloads all cogs/extensions.")
+    @commands.has_permissions(manage_guild=True)
     async def cogreloadall(self, ctx: ApplicationCommandInteraction):
 
         await ctx.response.send_message("**Reloading cogs in process...**")
