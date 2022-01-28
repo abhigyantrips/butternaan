@@ -12,10 +12,6 @@ import asyncio
 client = commands.Bot(
     command_prefix="!",
     intents=disnake.Intents().all(),
-    test_guilds=[
-        int(os.environ.get("TEST_GUILDS_ONE")),
-        int(os.environ.get("TEST_GUILDS_TWO")),
-    ],
     help_command=None,
 )
 client.loadedcogs = []
