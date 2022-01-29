@@ -25,14 +25,12 @@ class Funni(commands.Cog):
     @commands.is_owner()
     async def echo(self, ctx, member: disnake.Member, *, content):
 
-        messages = await ctx.channel.history(limit=11).flatten()
-        for msg in messages:
-            content = content + str(msg.id) + "\n"
-
         await ctx.message.delete()
+        
         current_webhooks = await ctx.message.channel.webhooks()
         new_webhook = ""
         webhook_count = []
+        
         for webhook in current_webhooks:
             if webhook.name == "Butternaan Webhook":
                 webhook_count.append(webhook)
