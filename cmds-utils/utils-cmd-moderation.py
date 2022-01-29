@@ -111,56 +111,6 @@ class Moderation(commands.Cog):
             content=f"Deleted **{len(deleted)}** messages by `{user}` in {channel.mention}."
         )
 
-    ### KICK & BAN ###
-
-    @mod.sub_command(
-        name="kick",
-        description="Kicks a specified user.",
-        options=[
-            Option("user", "The user to be kicked.", OptionType.user, True),
-            Option("reason", "Reason for kicking the user.", OptionType.string, False),
-        ],
-    )
-    @commands.bot_has_permissions(administrator=True)
-    async def kick(self, ctx: ApplicationCommandInteraction, user, reason=None):
-
-        if reason == None or " ":
-            await user.send(f"You got kicked lel. \nNo reason given, git gud.")
-            await ctx.response.send_message(
-                f"Alrighty, kicked `{user}`. \nNo reason given."
-            )
-        else:
-            await user.send(f"You got kicked lel. \nReason: `{reason}`")
-            await ctx.response.send_message(
-                f"Alrighty, kicked `{user}`. \nReason: `{reason}`"
-            )
-
-        await ctx.guild.kick(user, reason=reason)
-
-    @mod.sub_command(
-        name="ban",
-        description="Bans a specified user.",
-        options=[
-            Option("user", "The user to be banned.", OptionType.user, True),
-            Option("reason", "Reason for banning the user.", OptionType.string, False),
-        ],
-    )
-    @commands.bot_has_permissions(administrator=True)
-    async def ban(self, ctx: ApplicationCommandInteraction, user, reason=None):
-
-        if reason == None or " ":
-            await user.send(f"You got banned lel. \nNo reason given, git gud.")
-            await ctx.response.send_message(
-                f"Alrighty, banned `{user}`. \nNo reason given."
-            )
-        else:
-            await user.send(f"You got banned lel. \nReason: `{reason}`")
-            await ctx.response.send_message(
-                f"Alrighty, banned `{user}`. \nReason: `{reason}`"
-            )
-
-        await ctx.guild.ban(user, reason=reason, delete_message_days=0)
-
 
 def setup(client):
     client.add_cog(Moderation(client))
