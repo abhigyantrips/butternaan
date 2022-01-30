@@ -9,8 +9,6 @@ from disnake import (
     ApplicationCommandInteraction,
 )
 
-import os
-import requests
 
 
 class Funni(commands.Cog):
