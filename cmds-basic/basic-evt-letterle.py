@@ -33,7 +33,7 @@ class Letterle(commands.Cog):
                     avatar_url=message.author.display_avatar,
                 )
         
-        webhook = await ctx.channel.create_webhook(name="Butternaan Webhook", reason="Butternaan bhook")
+        webhook = await message.channel.create_webhook(name="Butternaan Webhook", reason="Butternaan bhook")
         await webhook.send(
             content=(message.content.replace("https://edjefferson.com/letterle/", "")),
             username=message.author.display_name,
