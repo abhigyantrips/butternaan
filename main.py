@@ -13,7 +13,7 @@ client = commands.Bot(
     command_prefix="!",
     intents=disnake.Intents().all(),
     help_command=None,
-    test_guilds=[os.environ.get("TEST_GUILDS_ONE"), os.environ.get("TEST_GUILDS_TWO")]
+    test_guilds=[int(os.environ.get("TEST_GUILDS_ONE")), int(os.environ.get("TEST_GUILDS_TWO")),]
 )
 client.loadedcogs = []
 client.unloadedcogs = []
