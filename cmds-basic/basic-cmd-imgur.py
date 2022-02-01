@@ -4,7 +4,6 @@ from disnake.ext import commands
 import os
 
 from imgurpython import ImgurClient
-from pyperclip import copy as Copy
 
 
 def upload_image(images):
@@ -21,7 +20,6 @@ def upload_image(images):
         response = imgur_client.upload_from_url(image, anon=True)
 
         links.append(response["link"])
-        Copy(response["link"])
 
     return "\n".join(links)
 
@@ -51,7 +49,7 @@ class Imgur(commands.Cog):
                 text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]"
             )
 
-        except Exception as e:
+        except:
 
             embed = disnake.Embed(
                 title="Image Upload Failure.",
@@ -63,8 +61,6 @@ class Imgur(commands.Cog):
             embed.set_footer(
                 text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]"
             )
-
-            print(e)
 
         await ctx.message.delete()
         await ctx.send(content=msg_content, embed=embed)
