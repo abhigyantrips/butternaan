@@ -51,7 +51,7 @@ class Imgur(commands.Cog):
                 text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]"
             )
 
-        except:
+        except Exception as e:
 
             embed = disnake.Embed(
                 title="Image Upload Failure.",
@@ -63,6 +63,8 @@ class Imgur(commands.Cog):
             embed.set_footer(
                 text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]"
             )
+
+            print(e)
 
         await ctx.message.delete()
         await ctx.send(content=msg_content, embed=embed)
