@@ -10,20 +10,22 @@ class Cogs(commands.Cog):
         self.client = client
 
     async def autocomp_loadedcogs(ctx: ApplicationCommandInteraction, user_input: str):
-        return [
+        cog_list = [
             cog
             for cog in ctx.client.loadedcogs
             if (user_input.lower() in cog) or (user_input in cog)
         ]
+        return cog_list[:25]
 
     async def autocomp_unloadedcogs(
         ctx: ApplicationCommandInteraction, user_input: str
     ):
-        return [
+        cog_list = [
             cog
             for cog in ctx.client.unloadedcogs
             if (user_input.lower() in cog) or (user_input in cog)
         ]
+        return cog_list[:25]
 
     @commands.slash_command(name="cog-utils")
     async def cogutils(self, ctx: ApplicationCommandInteraction):

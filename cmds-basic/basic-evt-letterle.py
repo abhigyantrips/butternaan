@@ -1,13 +1,6 @@
 import disnake
 from disnake.ext import commands
 from disnake.utils import get
-from disnake import (
-    SlashCommand,
-    Option,
-    OptionType,
-    OptionChoice,
-    ApplicationCommandInteraction,
-)
 
 
 
@@ -17,6 +10,9 @@ class Letterle(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        
+        if (message.channel.type != disnake.ChannelType.text):
+            return
 
         if (message.channel.name != "letterle") or ("https://edjefferson.com/letterle/" not in message.content):
             return
