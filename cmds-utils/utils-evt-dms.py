@@ -11,11 +11,11 @@ class DMs(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        if (message.channel.type != disnake.ChannelType.private) or (not message.content):
+        if (message.channel.type != disnake.ChannelType.private) or (not message.content) or (message.author.bot):
             return
 
         guild = get(self.client.guilds, id=int(os.environ.get("TEST_GUILDS_ONE")))
-        staff_channel = get(guild.channels, name="staff-chat")
+        staff_channel = get(guild.channels, name="bot-messages")
 
         embed = disnake.Embed(
             description=message.content,
@@ -29,7 +29,26 @@ class DMs(commands.Cog):
 
     @commands.command()
     async def reply(self, ctx, user: disnake.Member, *, message):
-        await user.send(message)
+        try:
+
+            channel = await user.create_dm()
+            sent_message = await channel.send(message)
+
+            embed = disnake.Embed(
+                description=sent_message.content,
+                color=0x303136,
+                timestamp=sent_message.created_at,
+            )
+
+            embed.set_author(name=self.client.user, icon_url=self.client.user.avatar)
+            embed.set_footer(text=f"{ctx.author.name} -> {user.name}", icon_url=ctx.author.avatar)
+            
+            await ctx.send(embed=embed)
+
+        except Exception as e:
+
+            await ctx.send(f"Could not send message to user.\n```{e}```")
+
 
 
 def setup(client):
