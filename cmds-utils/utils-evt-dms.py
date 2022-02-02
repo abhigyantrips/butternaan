@@ -27,6 +27,9 @@ class DMs(commands.Cog):
 
         await staff_channel.send(embed=embed)
 
+    @commands.command()
+    async def reply(self, ctx, user: disnake.Member, *, message):
+        await user.send(message)
 
 
 def setup(client):
