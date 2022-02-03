@@ -4,6 +4,9 @@ from disnake.utils import get
 
 import os
 
+async def is_owner(ctx):
+    return ctx.author.id == 434621628152938497
+
 class DMs(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -28,8 +31,11 @@ class DMs(commands.Cog):
         await staff_channel.send(embed=embed)
 
     @commands.command()
-    async def reply(self, ctx, user: disnake.Member, *, message):
+    @commands.check(is_owner)
+    async def message(self, ctx, user: disnake.Member, *, message):
         try:
+            
+            await ctx.message.delete()
 
             channel = await user.create_dm()
             sent_message = await channel.send(message)
