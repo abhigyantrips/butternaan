@@ -55,6 +55,25 @@ class DMs(commands.Cog):
 
             await ctx.send(f"Could not send message to user.\n```{e}```")
 
+    @commands.command()
+    @commands.check(is_owner)
+    async def fetch(self, ctx, user: disnake.Member):
+        try:
+            
+            await ctx.message.delete()
+
+            channel = await user.create_dm()
+            history = ""
+
+            async for message in channel.history(limit=20):
+                history += f"{message.author.name} [{message.created_at}] - {message.content}\n"
+            
+            await ctx.send(f"**Requested by {ctx.author}**\n```{history}```")
+
+        except Exception as e:
+
+            await ctx.send(f"Could not send message to user.\n```{e}```")
+
 
 
 def setup(client):

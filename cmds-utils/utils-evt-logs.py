@@ -17,6 +17,9 @@ class Logs(commands.Cog):
         if (message.guild.id != int(os.getenv("TEST_GUILDS_ONE"))) or (message.author.bot) or (not message.content):
             return
         
+        if message.channel.name == "uwuchat":
+            return
+
         log_channel = disnake.utils.get(message.guild.channels, name="bot-logs")
 
         embed = disnake.Embed(
