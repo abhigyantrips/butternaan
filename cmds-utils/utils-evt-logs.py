@@ -145,6 +145,42 @@ class Logs(commands.Cog):
 
         await log_channel.send(embed=embed)
 
+    @commands.Cog.listener()
+    async def on_guild_channel_update(self, before: disnake.abc.GuildChannel, after: disnake.abc.GuildChannel):
+
+        if (before.guild.id != int(os.getenv("TEST_GUILDS_ONE"))):
+            return
+
+        async for entry in before.guild.audit_logs(limit=1, action=disnake.AuditLogAction.channel_update):
+            entry = entry
+
+        log_channel = disnake.utils.get(before.guild.channels, name="bot-logs")
+
+        embed = disnake.Embed(
+            title="Channel Updated.",
+            description=f"A channel {before.mention} was updated by {entry.user.mention}.",
+            color=0x303136,
+            timestamp=datetime.datetime.now(),
+        )
+
+        if before.name != after.name:
+            embed.add_field(name="Name", value=f"Before: {before.name}\nAfter: {after.name}", inline=False)
+
+        if before.category != after.category:
+            embed.add_field(name="Category", value=f"Before: {before.category.name}\nAfter: {after.category.name}", inline=False)
+        
+        if before.position != after.position:
+            embed.add_field(name="Position", value=f"Before: {before.position} from top.\nAfter: {after.position} from top.", inline=False)
+        
+        if before.changed_roles != after.changed_roles:
+            embed.add_field(name="Changed Roles", value="\n".join(role.mention for role in before.changed_roles), inline=False)
+
+        if embed.fields == disnake.Embed.Empty:
+            return
+        
+        await log_channel.send(embed=embed)
+        
+
 
 def setup(client):
     client.add_cog(Logs(client))
