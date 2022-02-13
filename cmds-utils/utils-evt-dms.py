@@ -4,8 +4,10 @@ from disnake.utils import get
 
 import os
 
+
 async def is_owner(ctx):
     return ctx.author.id == 434621628152938497
+
 
 class DMs(commands.Cog):
     def __init__(self, client):
@@ -34,7 +36,7 @@ class DMs(commands.Cog):
     @commands.check(is_owner)
     async def message(self, ctx, user: disnake.Member, *, message):
         try:
-            
+
             await ctx.message.delete()
 
             channel = await user.create_dm()
@@ -48,7 +50,7 @@ class DMs(commands.Cog):
 
             embed.set_author(name=self.client.user, icon_url=self.client.user.avatar)
             embed.set_footer(text=f"{ctx.author.name} -> {user.name}", icon_url=ctx.author.avatar)
-            
+
             await ctx.send(embed=embed)
 
         except Exception as e:
@@ -59,7 +61,7 @@ class DMs(commands.Cog):
     @commands.check(is_owner)
     async def fetch(self, ctx, user: disnake.Member):
         try:
-            
+
             await ctx.message.delete()
 
             channel = await user.create_dm()
@@ -67,13 +69,12 @@ class DMs(commands.Cog):
 
             async for message in channel.history(limit=20):
                 history += f"{message.author.name} [{message.created_at}] - {message.content}\n"
-            
+
             await ctx.send(f"**Requested by {ctx.author}**\n```{history}```")
 
         except Exception as e:
 
             await ctx.send(f"Could not send message to user.\n```{e}```")
-
 
 
 def setup(client):

@@ -55,9 +55,7 @@ class Activities(commands.Cog):
             target_type=disnake.InviteTarget.embedded_application,
             target_application=act_val,
         )
-        await ctx.response.send_message(
-            f"Here's the link for {activity} - {link}", ephemeral=True
-        )
+        await ctx.response.send_message(f"Here's the link for {activity} - {link}", ephemeral=True)
 
 
 def setup(client):

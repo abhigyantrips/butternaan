@@ -10,30 +10,18 @@ class Cogs(commands.Cog):
         self.client = client
 
     async def autocomp_loadedcogs(ctx: ApplicationCommandInteraction, user_input: str):
-        cog_list = [
-            cog
-            for cog in ctx.client.loadedcogs
-            if (user_input.lower() in cog) or (user_input in cog)
-        ]
+        cog_list = [cog for cog in ctx.client.loadedcogs if (user_input.lower() in cog) or (user_input in cog)]
         return cog_list[:25]
 
-    async def autocomp_unloadedcogs(
-        ctx: ApplicationCommandInteraction, user_input: str
-    ):
-        cog_list = [
-            cog
-            for cog in ctx.client.unloadedcogs
-            if (user_input.lower() in cog) or (user_input in cog)
-        ]
+    async def autocomp_unloadedcogs(ctx: ApplicationCommandInteraction, user_input: str):
+        cog_list = [cog for cog in ctx.client.unloadedcogs if (user_input.lower() in cog) or (user_input in cog)]
         return cog_list[:25]
 
     @commands.slash_command(name="cog-utils")
     async def cogutils(self, ctx: ApplicationCommandInteraction):
         pass
 
-    @cogutils.sub_command(
-        name="load", description="Load a cog/extension (autocomplete options)."
-    )
+    @cogutils.sub_command(name="load", description="Load a cog/extension (autocomplete options).")
     @commands.has_permissions(manage_guild=True)
     async def cogload(
         self,
@@ -58,9 +46,7 @@ class Cogs(commands.Cog):
 
         await ctx.response.send_message(f"Loaded `{cog}`.")
 
-    @cogutils.sub_command(
-        name="unload", description="Unload a cog/extension (autocomplete options)."
-    )
+    @cogutils.sub_command(name="unload", description="Unload a cog/extension (autocomplete options).")
     @commands.has_permissions(manage_guild=True)
     async def cogunload(
         self,
@@ -85,9 +71,7 @@ class Cogs(commands.Cog):
 
         await ctx.response.send_message(f"Unloaded `{cog}`.")
 
-    @cogutils.sub_command(
-        name="reload", description="Reload a cog/extension (autocomplete options)."
-    )
+    @cogutils.sub_command(name="reload", description="Reload a cog/extension (autocomplete options).")
     @commands.has_permissions(manage_guild=True)
     async def cogreload(
         self,
@@ -125,9 +109,7 @@ class Cogs(commands.Cog):
                 else:
                     pass
             except Exception as e:
-                edit.append(
-                    f"**|  Could not reload {filename} due to exception:** \n```{e}```"
-                )
+                edit.append(f"**|  Could not reload {filename} due to exception:** \n```{e}```")
 
         edit.append("**--------- CONTEXT COMMANDS ---------**")
         for filename in os.listdir("./cmds-cotxt"):
@@ -138,9 +120,7 @@ class Cogs(commands.Cog):
                 else:
                     pass
             except Exception as e:
-                edit.append(
-                    f"**|  Could not reload {filename} due to exception:** \n```{e}```"
-                )
+                edit.append(f"**|  Could not reload {filename} due to exception:** \n```{e}```")
 
         edit.append("**---------- SLASH COMMANDS ----------**")
         for filename in os.listdir("./cmds-slash"):
@@ -151,9 +131,7 @@ class Cogs(commands.Cog):
                 else:
                     pass
             except Exception as e:
-                edit.append(
-                    f"**|  Could not reload {filename} due to exception:** \n```{e}```"
-                )
+                edit.append(f"**|  Could not reload {filename} due to exception:** \n```{e}```")
 
         edit.append("**---------- UTILS COMMANDS ----------**")
         for filename in os.listdir("./cmds-utils"):
@@ -164,9 +142,7 @@ class Cogs(commands.Cog):
                 else:
                     pass
             except Exception as e:
-                edit.append(
-                    f"**|  Could not reload {filename} due to exception:** \n```{e}```"
-                )
+                edit.append(f"**|  Could not reload {filename} due to exception:** \n```{e}```")
         edit.append("**-----------------------------------------------**")
         edit.append("**COGS RELOADED.**")
 

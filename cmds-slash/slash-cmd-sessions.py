@@ -48,9 +48,7 @@ class Sessions(commands.Cog):
 
         if validate != "Ok.":
 
-            await ctx.response.send_message(
-                "You didn't enter the time correctly, dumbass."
-            )
+            await ctx.response.send_message("You didn't enter the time correctly, dumbass.")
 
         else:
 

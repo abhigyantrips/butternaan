@@ -10,7 +10,6 @@ from disnake import (
 )
 
 
-
 class Funni(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -24,24 +23,20 @@ class Funni(commands.Cog):
     async def echo(self, ctx, member: disnake.Member, *, content):
 
         await ctx.message.delete()
-        
+
         current_webhooks = await ctx.message.channel.webhooks()
         new_webhook = ""
         webhook_count = []
-        
+
         for webhook in current_webhooks:
             if webhook.name == "Butternaan Webhook":
                 webhook_count.append(webhook)
         if len(webhook_count) > 1:
-            new_webhook = await ctx.message.channel.create_webhook(
-                name="Butternaan Webhook", reason="Bot Webhook"
-            )
+            new_webhook = await ctx.message.channel.create_webhook(name="Butternaan Webhook", reason="Bot Webhook")
             for webhook in webhook_count:
                 await webhook.delete()
         elif len(webhook_count) == 0:
-            new_webhook = await ctx.message.channel.create_webhook(
-                name="Butternaan Webhook", reason="Bot Webhook"
-            )
+            new_webhook = await ctx.message.channel.create_webhook(name="Butternaan Webhook", reason="Bot Webhook")
         elif len(webhook_count) == 1:
             for webhook in webhook_count:
                 new_webhook = webhook

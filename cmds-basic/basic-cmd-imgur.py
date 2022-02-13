@@ -45,9 +45,7 @@ class Imgur(commands.Cog):
             msg_content = "**Upload Success.**"
             embed.add_field(name="Imgur Link(s)", value=link)
             embed.set_image(url=link)
-            embed.set_footer(
-                text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]"
-            )
+            embed.set_footer(text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]")
 
         except:
 
@@ -58,9 +56,7 @@ class Imgur(commands.Cog):
             )
 
             msg_content = "**Upload Failure.**"
-            embed.set_footer(
-                text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]"
-            )
+            embed.set_footer(text=f"Requested by {ctx.message.author} [{ctx.message.author.id}]")
 
         await ctx.message.delete()
         await ctx.send(content=msg_content, embed=embed)

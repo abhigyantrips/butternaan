@@ -1,6 +1,7 @@
 import disnake
 from disnake.ext import commands
 
+
 import dotenv
 
 dotenv.load_dotenv()
@@ -13,7 +14,10 @@ client = commands.Bot(
     command_prefix="!",
     intents=disnake.Intents().all(),
     help_command=None,
-    test_guilds=[int(os.environ.get("TEST_GUILDS_ONE")), int(os.environ.get("TEST_GUILDS_TWO")),]
+    test_guilds=[
+        int(os.environ.get("TEST_GUILDS_ONE")),
+        int(os.environ.get("TEST_GUILDS_TWO")),
+    ],
 )
 client.loadedcogs = []
 client.unloadedcogs = []
@@ -24,9 +28,7 @@ async def on_ready():
 
     await client.change_presence(
         status=disnake.Status.idle,
-        activity=disnake.Activity(
-            type=disnake.ActivityType.watching, name="the world burn."
-        ),
+        activity=disnake.Activity(type=disnake.ActivityType.watching, name="the world burn."),
     )
 
     print("---------- BASIC COMMANDS ----------")

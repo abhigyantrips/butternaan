@@ -23,9 +23,7 @@ class Demo(commands.Cog):
                 description="An optional option. (This takes a string.)",
                 required=False,
             ),
-            Option(
-                type=3, name="string", description="A string input.", required=False
-            ),
+            Option(type=3, name="string", description="A string input.", required=False),
             Option(
                 type=3,
                 name="string_choice",

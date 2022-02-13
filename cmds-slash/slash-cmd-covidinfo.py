@@ -38,30 +38,20 @@ class COVID(commands.Cog):
         self.client = client
 
     async def autocomp_states(ctx: ApplicationCommandInteraction, user_input: str):
-        return [
-            state
-            for state in india_states
-            if (user_input.lower() in state) or (user_input in state)
-        ]
+        return [state for state in india_states if (user_input.lower() in state) or (user_input in state)]
 
     @commands.slash_command(name="covid")
     async def covid(self, ctx: ApplicationCommandInteraction):
         pass
 
-    @covid.sub_command(
-        name="stats", description="Get statistics on COVID cases, per state."
-    )
+    @covid.sub_command(name="stats", description="Get statistics on COVID cases, per state.")
     async def _stats(
         self,
         ctx: ApplicationCommandInteraction,
-        state: str = commands.Param(
-            desc="Enter the State/UT to get info on.", autocomp=autocomp_states
-        ),
+        state: str = commands.Param(desc="Enter the State/UT to get info on.", autocomp=autocomp_states),
     ):
 
-        covidjson = json.loads(
-            requests.get("https://api.rootnet.in/covid19-in/stats/latest/").text
-        )
+        covidjson = json.loads(requests.get("https://api.rootnet.in/covid19-in/stats/latest/").text)
 
         embed = disnake.Embed(
             title="COVID Statistics",
@@ -88,24 +78,18 @@ class COVID(commands.Cog):
                         value=state_ut["discharged"],
                         inline=False,
                     )
-                    embed.add_field(
-                        name="Deaths", value=state_ut["deaths"], inline=True
-                    )
+                    embed.add_field(name="Deaths", value=state_ut["deaths"], inline=True)
                     embed.add_field(
                         name="Total Confirmed",
                         value=state_ut["totalConfirmed"],
                         inline=True,
                     )
         else:
-            embed.add_field(
-                name="API Status Error", value="Unable to access API at this time."
-            )
+            embed.add_field(name="API Status Error", value="Unable to access API at this time.")
 
         embed.set_thumbnail("https://i.imgur.com/C3nRUXM.jpeg")
         embed.set_footer(text=f"Requested by {ctx.author.name} [{ctx.author.id}]")
-        await ctx.response.send_message(
-            content=f"Statistics for **{state}**", embed=embed
-        )
+        await ctx.response.send_message(content=f"Statistics for **{state}**", embed=embed)
 
     @covid.sub_command(
         name="resources",
@@ -114,17 +98,11 @@ class COVID(commands.Cog):
     async def _resources(
         self,
         ctx: ApplicationCommandInteraction,
-        state: str = commands.Param(
-            desc="Enter the State/UT to get info on.", autocomp=autocomp_states
-        ),
+        state: str = commands.Param(desc="Enter the State/UT to get info on.", autocomp=autocomp_states),
     ):
 
-        contactjson = json.loads(
-            requests.get("https://api.rootnet.in/covid19-in/contacts/").text
-        )
-        resourcejson = json.loads(
-            requests.get("https://api.rootnet.in/covid19-in/hospitals/beds").text
-        )
+        contactjson = json.loads(requests.get("https://api.rootnet.in/covid19-in/contacts/").text)
+        resourcejson = json.loads(requests.get("https://api.rootnet.in/covid19-in/hospitals/beds").text)
 
         embed = disnake.Embed(
             title="COVID Statistics",
@@ -159,9 +137,7 @@ class COVID(commands.Cog):
 
         embed.set_thumbnail("https://i.imgur.com/vEp2BW7.jpeg")
         embed.set_footer(text=f"• Requested by {ctx.author.name} [{ctx.author.id}]")
-        await ctx.response.send_message(
-            content=f"Resources/Contacts for **{state}**", embed=embed
-        )
+        await ctx.response.send_message(content=f"Resources/Contacts for **{state}**", embed=embed)
 
 
 def setup(client):

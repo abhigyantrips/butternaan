@@ -15,9 +15,7 @@ class Weather(commands.Cog):
         if user_input != "" or None:
             autocompjson = list(
                 json.loads(
-                    requests.get(
-                        f"http://api.weatherapi.com/v1/search.json?key={WEATHER_API_KEY}&q={user_input}"
-                    ).text
+                    requests.get(f"http://api.weatherapi.com/v1/search.json?key={WEATHER_API_KEY}&q={user_input}").text
                 )
             )
             autocomplist = []
@@ -39,15 +37,11 @@ class Weather(commands.Cog):
     async def _forecast(
         self,
         ctx: ApplicationCommandInteraction,
-        location: str = commands.Param(
-            desc="Enter the location to get info on.", autocomp=autocomp_weather
-        ),
+        location: str = commands.Param(desc="Enter the location to get info on.", autocomp=autocomp_weather),
     ):
 
         weatherjson = json.loads(
-            requests.get(
-                f"http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={location}&aqi=yes"
-            ).text
+            requests.get(f"http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={location}&aqi=yes").text
         )
 
         embed = disnake.Embed(
@@ -65,9 +59,7 @@ class Weather(commands.Cog):
             value=f'{(weatherjson["current"]["condition"]["text"]).capitalize()}',
             inline=True,
         )
-        embed.add_field(
-            name="Humidity", value=f'{weatherjson["current"]["humidity"]}%', inline=True
-        )
+        embed.add_field(name="Humidity", value=f'{weatherjson["current"]["humidity"]}%', inline=True)
         embed.add_field(
             name="Wind Speed",
             value=f'{weatherjson["current"]["wind_mph"]} MPH - {weatherjson["current"]["wind_kph"]} KMPH',
@@ -83,9 +75,7 @@ class Weather(commands.Cog):
             value=f'```PM 2.5: {round(weatherjson["current"]["air_quality"]["pm2_5"], 1)}\nPM 10: {round(weatherjson["current"]["air_quality"]["pm10"], 1)}```',
             inline=False,
         )
-        embed.set_thumbnail(
-            url=("http:" + (weatherjson["current"]["condition"]["icon"]))
-        )
+        embed.set_thumbnail(url=("http:" + (weatherjson["current"]["condition"]["icon"])))
 
         await ctx.response.send_message(embed=embed)
 
