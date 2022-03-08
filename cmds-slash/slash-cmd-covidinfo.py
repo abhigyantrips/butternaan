@@ -38,7 +38,11 @@ class COVID(commands.Cog):
         self.client = client
 
     async def autocomp_states(ctx: ApplicationCommandInteraction, user_input: str):
-        return [state for state in india_states if (user_input.lower() in state) or (user_input in state)]
+        return [
+            state
+            for state in india_states
+            if (user_input.lower() in state) or (user_input in state)
+        ]
 
     @commands.slash_command(name="covid")
     async def covid(self, ctx: ApplicationCommandInteraction):
@@ -48,7 +52,9 @@ class COVID(commands.Cog):
     async def _stats(
         self,
         ctx: ApplicationCommandInteraction,
-        state: str = commands.Param(desc="Enter the State/UT to get info on.", autocomp=autocomp_states),
+        state: str = commands.Param(
+            desc="Enter the State/UT to get info on.", autocomp=autocomp_states
+        ),
     ):
 
         covidjson = json.loads(requests.get("https://api.rootnet.in/covid19-in/stats/latest/").text)
@@ -98,11 +104,15 @@ class COVID(commands.Cog):
     async def _resources(
         self,
         ctx: ApplicationCommandInteraction,
-        state: str = commands.Param(desc="Enter the State/UT to get info on.", autocomp=autocomp_states),
+        state: str = commands.Param(
+            desc="Enter the State/UT to get info on.", autocomp=autocomp_states
+        ),
     ):
 
         contactjson = json.loads(requests.get("https://api.rootnet.in/covid19-in/contacts/").text)
-        resourcejson = json.loads(requests.get("https://api.rootnet.in/covid19-in/hospitals/beds").text)
+        resourcejson = json.loads(
+            requests.get("https://api.rootnet.in/covid19-in/hospitals/beds").text
+        )
 
         embed = disnake.Embed(
             title="COVID Statistics",

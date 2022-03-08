@@ -32,11 +32,15 @@ class Funni(commands.Cog):
             if webhook.name == "Butternaan Webhook":
                 webhook_count.append(webhook)
         if len(webhook_count) > 1:
-            new_webhook = await ctx.message.channel.create_webhook(name="Butternaan Webhook", reason="Bot Webhook")
+            new_webhook = await ctx.message.channel.create_webhook(
+                name="Butternaan Webhook", reason="Bot Webhook"
+            )
             for webhook in webhook_count:
                 await webhook.delete()
         elif len(webhook_count) == 0:
-            new_webhook = await ctx.message.channel.create_webhook(name="Butternaan Webhook", reason="Bot Webhook")
+            new_webhook = await ctx.message.channel.create_webhook(
+                name="Butternaan Webhook", reason="Bot Webhook"
+            )
         elif len(webhook_count) == 1:
             for webhook in webhook_count:
                 new_webhook = webhook

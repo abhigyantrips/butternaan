@@ -29,7 +29,9 @@ class Moderation(commands.Cog):
     async def purge(self, ctx: ApplicationCommandInteraction, amount):
 
         if amount >= 100:
-            return await ctx.response.send_message("You're asking me to delete too many messages at once, mate.")
+            return await ctx.response.send_message(
+                "You're asking me to delete too many messages at once, mate."
+            )
 
         await ctx.response.send_message("Purging messages in progress...", ephemeral=True)
         await ctx.channel.purge(limit=amount)

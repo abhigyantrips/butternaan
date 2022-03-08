@@ -14,7 +14,11 @@ class Logs(commands.Cog):
     @commands.Cog.listener()
     async def on_message_delete(self, message: disnake.Message):
 
-        if (message.guild.id != int(os.getenv("TEST_GUILDS_ONE"))) or (message.author.bot) or (not message.content):
+        if (
+            (message.guild.id != int(os.getenv("TEST_GUILDS_ONE")))
+            or (message.author.bot)
+            or (not message.content)
+        ):
             return
 
         if message.channel.name == "uwuchat":
@@ -108,7 +112,9 @@ class Logs(commands.Cog):
         await log_channel.send(embed=embed)
 
     @commands.Cog.listener()
-    async def on_reaction_clear(self, message: disnake.Message, reactions: typing.List[disnake.Reaction]):
+    async def on_reaction_clear(
+        self, message: disnake.Message, reactions: typing.List[disnake.Reaction]
+    ):
 
         if (
             (message.guild.id != int(os.getenv("TEST_GUILDS_ONE")))
@@ -157,7 +163,9 @@ class Logs(commands.Cog):
         if channel.guild.id != int(os.getenv("TEST_GUILDS_ONE")):
             return
 
-        async for entry in channel.guild.audit_logs(limit=1, action=disnake.AuditLogAction.channel_create):
+        async for entry in channel.guild.audit_logs(
+            limit=1, action=disnake.AuditLogAction.channel_create
+        ):
             entry = entry
 
         log_channel = disnake.utils.get(channel.guild.channels, name="bot-logs")
@@ -193,7 +201,9 @@ class Logs(commands.Cog):
         if channel.guild.id != int(os.getenv("TEST_GUILDS_ONE")):
             return
 
-        async for entry in channel.guild.audit_logs(limit=1, action=disnake.AuditLogAction.channel_delete):
+        async for entry in channel.guild.audit_logs(
+            limit=1, action=disnake.AuditLogAction.channel_delete
+        ):
             entry = entry
 
         log_channel = disnake.utils.get(channel.guild.channels, name="bot-logs")
@@ -224,12 +234,16 @@ class Logs(commands.Cog):
         await log_channel.send(embed=embed)
 
     @commands.Cog.listener()
-    async def on_guild_channel_update(self, before: disnake.abc.GuildChannel, after: disnake.abc.GuildChannel):
+    async def on_guild_channel_update(
+        self, before: disnake.abc.GuildChannel, after: disnake.abc.GuildChannel
+    ):
 
         if before.guild.id != int(os.getenv("TEST_GUILDS_ONE")):
             return
 
-        async for entry in before.guild.audit_logs(limit=1, action=disnake.AuditLogAction.channel_update):
+        async for entry in before.guild.audit_logs(
+            limit=1, action=disnake.AuditLogAction.channel_update
+        ):
             entry = entry
 
         log_channel = disnake.utils.get(before.guild.channels, name="bot-logs")

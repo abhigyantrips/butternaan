@@ -13,7 +13,9 @@ class Letterle(commands.Cog):
         if message.channel.type != disnake.ChannelType.text:
             return
 
-        if (message.channel.name != "letterle") or ("https://edjefferson.com/letterle/" not in message.content):
+        if (message.channel.name != "letterle") or (
+            "https://edjefferson.com/letterle/" not in message.content
+        ):
             return
 
         await message.delete()
@@ -28,7 +30,9 @@ class Letterle(commands.Cog):
                     avatar_url=message.author.display_avatar,
                 )
 
-        webhook = await message.channel.create_webhook(name="Butternaan Webhook", reason="Butternaan bhook")
+        webhook = await message.channel.create_webhook(
+            name="Butternaan Webhook", reason="Butternaan bhook"
+        )
         await webhook.send(
             content=(message.content.replace("https://edjefferson.com/letterle/", "")),
             username=message.author.display_name,

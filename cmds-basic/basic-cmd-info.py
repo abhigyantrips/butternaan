@@ -71,7 +71,11 @@ class GetInfo(commands.Cog):
     async def _server(self, ctx):
         guild = ctx.message.guild
         online = len(
-            [m.status for m in guild.members if m.status == disnake.Status.online or m.status == disnake.Status.idle]
+            [
+                m.status
+                for m in guild.members
+                if m.status == disnake.Status.online or m.status == disnake.Status.idle
+            ]
         )
         total_users = len(guild.members)
         total_bots = len([member for member in guild.members if member.bot == True])
@@ -79,7 +83,9 @@ class GetInfo(commands.Cog):
         text_channels = len(ctx.guild.text_channels)
         voice_channels = len(ctx.guild.voice_channels)
         passed = (ctx.message.created_at - guild.created_at).days
-        created_at = "Since {}. Over {} days ago." "".format(guild.created_at.strftime("%d %b %Y %H:%M"), passed)
+        created_at = "Since {}. Over {} days ago." "".format(
+            guild.created_at.strftime("%d %b %Y %H:%M"), passed
+        )
 
         embed = disnake.Embed(description=created_at, colour=disnake.Colour(value=0x36393E))
         embed.add_field(name="Region", value=str(guild.region))

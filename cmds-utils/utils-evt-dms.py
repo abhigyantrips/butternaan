@@ -16,7 +16,11 @@ class DMs(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
 
-        if (message.channel.type != disnake.ChannelType.private) or (not message.content) or (message.author.bot):
+        if (
+            (message.channel.type != disnake.ChannelType.private)
+            or (not message.content)
+            or (message.author.bot)
+        ):
             return
 
         guild = get(self.client.guilds, id=int(os.environ.get("TEST_GUILDS_ONE")))

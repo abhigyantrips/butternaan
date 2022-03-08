@@ -10,11 +10,19 @@ class Cogs(commands.Cog):
         self.client = client
 
     async def autocomp_loadedcogs(ctx: ApplicationCommandInteraction, user_input: str):
-        cog_list = [cog for cog in ctx.client.loadedcogs if (user_input.lower() in cog) or (user_input in cog)]
+        cog_list = [
+            cog
+            for cog in ctx.client.loadedcogs
+            if (user_input.lower() in cog) or (user_input in cog)
+        ]
         return cog_list[:25]
 
     async def autocomp_unloadedcogs(ctx: ApplicationCommandInteraction, user_input: str):
-        cog_list = [cog for cog in ctx.client.unloadedcogs if (user_input.lower() in cog) or (user_input in cog)]
+        cog_list = [
+            cog
+            for cog in ctx.client.unloadedcogs
+            if (user_input.lower() in cog) or (user_input in cog)
+        ]
         return cog_list[:25]
 
     @commands.slash_command(name="cog-utils")
@@ -46,7 +54,9 @@ class Cogs(commands.Cog):
 
         await ctx.response.send_message(f"Loaded `{cog}`.")
 
-    @cogutils.sub_command(name="unload", description="Unload a cog/extension (autocomplete options).")
+    @cogutils.sub_command(
+        name="unload", description="Unload a cog/extension (autocomplete options)."
+    )
     @commands.has_permissions(manage_guild=True)
     async def cogunload(
         self,
@@ -71,7 +81,9 @@ class Cogs(commands.Cog):
 
         await ctx.response.send_message(f"Unloaded `{cog}`.")
 
-    @cogutils.sub_command(name="reload", description="Reload a cog/extension (autocomplete options).")
+    @cogutils.sub_command(
+        name="reload", description="Reload a cog/extension (autocomplete options)."
+    )
     @commands.has_permissions(manage_guild=True)
     async def cogreload(
         self,
