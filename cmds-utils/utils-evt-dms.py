@@ -5,8 +5,8 @@ from disnake.utils import get
 import os
 
 
-async def is_owner(ctx):
-    return ctx.author.id == 434621628152938497
+# async def is_owner(ctx):
+#     return ctx.author.id == 434621628152938497
 
 
 class DMs(commands.Cog):
@@ -37,7 +37,7 @@ class DMs(commands.Cog):
         await staff_channel.send(embed=embed)
 
     @commands.command()
-    @commands.check(is_owner)
+    @commands.has_permissions(manage_messages=True)
     async def message(self, ctx, user: disnake.Member, *, message):
         try:
 
@@ -62,7 +62,7 @@ class DMs(commands.Cog):
             await ctx.send(f"Could not send message to user.\n```{e}```")
 
     @commands.command()
-    @commands.check(is_owner)
+    @commands.has_permissions(manage_messages=True)
     async def fetch(self, ctx, user: disnake.Member):
         try:
 
