@@ -40,14 +40,12 @@ class Cogs(commands.Cog):
         ),
     ):
 
-        if "basic" in cog:
-            ctx.client.load_extension(f"cmds-basic.{cog}")
-        elif "slash" in cog:
-            ctx.client.load_extension(f"cmds-slash.{cog}")
-        elif "cotxt" in cog:
-            ctx.client.load_extension(f"cmds-cotxt.{cog}")
+        if "command" in cog:
+            ctx.client.load_extension(f"commands.{cog}")
+        elif "interaction" in cog:
+            ctx.client.load_extension(f"interactions.{cog}")
         elif "utils" in cog:
-            ctx.client.load_extension(f"cmds-utils.{cog}")
+            ctx.client.load_extension(f"utils.{cog}")
 
         ctx.client.loadedcogs.append(cog)
         ctx.client.unloadedcogs.remove(cog)
@@ -68,13 +66,11 @@ class Cogs(commands.Cog):
     ):
 
         if "basic" in cog:
-            ctx.client.unload_extension(f"cmds-basic.{cog}")
-        elif "slash" in cog:
-            ctx.client.unload_extension(f"cmds-slash.{cog}")
-        elif "cotxt" in cog:
-            ctx.client.unload_extension(f"cmds-cotxt.{cog}")
+            ctx.client.unload_extension(f"commands.{cog}")
+        elif "interaction" in cog:
+            ctx.client.unload_extension(f"interactions.{cog}")
         elif "utils" in cog:
-            ctx.client.unload_extension(f"cmds-utils.{cog}")
+            ctx.client.unload_extension(f"interactions.{cog}")
 
         ctx.client.loadedcogs.remove(cog)
         ctx.client.unloadedcogs.append(cog)
@@ -94,12 +90,10 @@ class Cogs(commands.Cog):
         ),
     ):
 
-        if "basic" in cog:
+        if "" in cog:
             ctx.client.reload_extension(f"cmds-basic.{cog}")
         elif "slash" in cog:
             ctx.client.reload_extension(f"cmds-slash.{cog}")
-        elif "cotxt" in cog:
-            ctx.client.reload_extension(f"cmds-cotxt.{cog}")
         elif "utils" in cog:
             ctx.client.reload_extension(f"cmds-utils.{cog}")
 
