@@ -12,7 +12,7 @@ class AutoRole(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member: disnake.Member):
 
-        if member.guild.id != int(os.environ.get("TEST_GUILDS_ONE")):
+        if member.guild.id != int(os.getenv("TEST_GUILDS_ONE")):
             return
 
         if member.bot:
@@ -22,7 +22,7 @@ class AutoRole(commands.Cog):
     @commands.Cog.listener()
     async def on_member_update(self, before: disnake.Member, after: disnake.Member):
 
-        if before.guild.id != int(os.environ.get("TEST_GUILDS_ONE")) or (before.bot):
+        if before.guild.id != int(os.getenv("TEST_GUILDS_ONE")) or (before.bot):
             return
 
         if before.pending and not after.pending:

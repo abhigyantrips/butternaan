@@ -3,7 +3,7 @@ from disnake import ApplicationCommandInteraction, Option, OptionType
 from disnake.ext import commands
 
 
-class Reverse(commands.Cog):
+class Avatar(commands.Cog):
     def __init__(self, client):
         self.client = client
 
@@ -15,4 +15,4 @@ class Reverse(commands.Cog):
 
 
 def setup(client):
-    client.add_cog(Reverse(client))
+    client.add_cog(Avatar(client))

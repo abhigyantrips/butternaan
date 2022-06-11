@@ -9,8 +9,8 @@ from imgurpython import ImgurClient
 def upload_image(images):
 
     imgur_client = ImgurClient(
-        client_id=os.environ.get("IMGUR_API_ID"),
-        client_secret=os.environ.get("IMGUR_API_SC"),
+        client_id=os.getenv("IMGUR_API_ID"),
+        client_secret=os.getenv("IMGUR_API_SC"),
     )
 
     links = []

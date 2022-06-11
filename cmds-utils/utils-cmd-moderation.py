@@ -2,7 +2,6 @@ import disnake
 from disnake.ext import commands
 from disnake import Option, OptionType, ChannelType, ApplicationCommandInteraction
 
-import asyncio
 from datetime import datetime, timedelta
 
 

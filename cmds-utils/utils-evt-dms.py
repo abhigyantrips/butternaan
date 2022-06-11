@@ -23,7 +23,7 @@ class DMs(commands.Cog):
         ):
             return
 
-        guild = get(self.client.guilds, id=int(os.environ.get("TEST_GUILDS_ONE")))
+        guild = get(self.client.guilds, id=int(os.getenv("TEST_GUILDS_ONE")))
         staff_channel = get(guild.channels, name="bot-messages")
 
         embed = disnake.Embed(

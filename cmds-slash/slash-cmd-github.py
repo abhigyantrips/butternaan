@@ -1,8 +1,9 @@
+import json
+import requests
+
 import disnake
 from disnake.ext import commands
 from disnake import Option, OptionType
-
-import requests, json
 
 
 class GitHub(commands.Cog):

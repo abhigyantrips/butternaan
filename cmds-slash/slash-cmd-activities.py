@@ -12,7 +12,7 @@ class Activities(commands.Cog):
         description="Use Discord Activities.",
         options=[
             Option(
-                name="vc_channel",
+                name="channel",
                 description="The channel to stream the activity in.",
                 type=OptionType.channel,
                 channel_types=[disnake.ChannelType.voice],

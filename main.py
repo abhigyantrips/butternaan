@@ -1,20 +1,23 @@
 import os
 import random
-import asyncio
-import dotenv
-
-dotenv.load_dotenv()
 
 import disnake
 from disnake.ext import commands
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    pass
+else:
+    load_dotenv()
 
 client = commands.Bot(
     command_prefix="!",
     intents=disnake.Intents().all(),
     help_command=None,
     test_guilds=[
-        int(os.environ.get("TEST_GUILDS_ONE")),
-        int(os.environ.get("TEST_GUILDS_TWO")),
+        int(os.getenv("TEST_GUILDS_ONE")),
+        int(os.getenv("TEST_GUILDS_TWO")),
     ],
 )
 client.loadedcogs = []
@@ -80,5 +83,4 @@ async def on_ready():
     print("Hello! The bot is back online :]")
 
 
-DISCORD_BOT_TOKEN = os.environ.get("DISCORD_BOT_TOKEN")
-client.run(DISCORD_BOT_TOKEN)
+client.run(os.getenv("DISCORD_BOT_TOKEN"))

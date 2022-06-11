@@ -1,13 +1,6 @@
 import disnake
 from disnake.ext import commands
 from disnake.utils import get
-from disnake import (
-    SlashCommand,
-    Option,
-    OptionType,
-    OptionChoice,
-    ApplicationCommandInteraction,
-)
 
 
 class Funni(commands.Cog):
@@ -15,7 +8,7 @@ class Funni(commands.Cog):
         self.client = client
 
     @commands.slash_command(name="ping", description="Gives the ping, I guess.")
-    async def ping(self, ctx: ApplicationCommandInteraction):
+    async def ping(self, ctx: disnake.ApplicationCommandInteraction):
         await ctx.response.send_message("I'm not here to play table tennis, dumbass.")
 
     @commands.command()

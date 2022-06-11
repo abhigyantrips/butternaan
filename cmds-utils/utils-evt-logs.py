@@ -40,7 +40,7 @@ class Logs(commands.Cog):
         )
         embed.add_field(
             name="Timestamp",
-            value=f"<t:{round(time.mktime(message.created_at.timetuple()))}:f>",
+            value=disnake.utils.format_dt(message.created_at),
             inline=False,
         )
 
@@ -89,12 +89,12 @@ class Logs(commands.Cog):
         )
         embed.add_field(
             name="Timestamp",
-            value=f"<t:{round(time.mktime(after.created_at.timetuple()))}:f>",
+            value=disnake.utils.format_dt(after.created_at),
             inline=False,
         )
         embed.add_field(
             name="Edited",
-            value=f"<t:{round(time.mktime(after.edited_at.timetuple()))}:f>",
+            value=disnake.utils.format_dt(after.edited_at),
             inline=False,
         )
 
@@ -189,7 +189,7 @@ class Logs(commands.Cog):
         )
         embed.add_field(
             name="Created",
-            value=f"<t:{round(time.mktime(channel.created_at.timetuple()))}:f>",
+            value=disnake.utils.format_dt(channel.created_at),
             inline=False,
         )
 
@@ -227,7 +227,7 @@ class Logs(commands.Cog):
         )
         embed.add_field(
             name="Created",
-            value=f"<t:{round(time.mktime(channel.created_at.timetuple()))}:f>",
+            value=disnake.utils.format_dt(channel.created_at),
             inline=False,
         )
 
@@ -330,7 +330,7 @@ class Logs(commands.Cog):
         )
         embed.add_field(
             name="Created",
-            value=f"<t:{round(time.mktime(thread.created_at.timetuple()))}:f>",
+            value=disnake.utils.format_dt(thread.created_at),
             inline=False,
         )
 

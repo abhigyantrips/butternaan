@@ -1,7 +1,10 @@
+import random
+import time
+import datetime
+import json
+
 import disnake
 from disnake.ext import commands
-
-import asyncio, random, time, datetime, json
 
 
 class GetInfo(commands.Cog):
@@ -37,7 +40,7 @@ class GetInfo(commands.Cog):
             if str(user.activity).startswith("<disnake.activity.Activity"):
                 pass
             else:
-                activity = f"Playing {user.activity}"
+                activity = f"Playing {user.activity.name}"
 
         if roles:
             roles = "\n".join(roles)
