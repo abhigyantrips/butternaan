@@ -23,6 +23,10 @@ class Funni(commands.Cog):
             message = await self.client.fetch_message(message_id)
             await message.reply(content=content, files=[await a.to_file() for a in ctx.message.attachments])
 
+    @echo.error
+    async def nomentionlinkoss(self, ctx, error):
+        if isinstance(error, commands.MissingPermissions):
+            pass
 
 def setup(client):
     client.add_cog(Funni(client))
