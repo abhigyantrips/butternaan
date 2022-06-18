@@ -20,7 +20,7 @@ class Funni(commands.Cog):
         if message_id == "none":
             await ctx.send(content=content, files=[await a.to_file() for a in ctx.message.attachments])
         else:
-            message = await self.client.fetch_message(message_id)
+            message = await self.client.fetch_message(int(message_id))
             await message.reply(content=content, files=[await a.to_file() for a in ctx.message.attachments])
 
     @echo.error
