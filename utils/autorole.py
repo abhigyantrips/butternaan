@@ -20,10 +20,10 @@ class AutoRole(commands.Cog):
         if member.bot:
             bot_role = get(member.guild.roles, name="◍ • Bots")
             await member.add_roles(bot_role)
-		
-		if member.id in OWNERS:
-			mod_role = get(member.guild.roles, id=MOD_ROLE)
-			await member.add_roles(mod_role)
+
+        if member.id in OWNERS:
+            mod_role = get(member.guild.roles, id=MOD_ROLE)
+            await member.add_roles(mod_role)
 
     @commands.Cog.listener()
     async def on_member_update(self, before: disnake.Member, after: disnake.Member):
