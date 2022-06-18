@@ -17,7 +17,7 @@ class Funni(commands.Cog):
 
         await ctx.message.delete()
 		
-        if message_id = "none":
+        if message_id == "none":
             await ctx.send(content=content, files=[await a.to_file() for a in ctx.message.attachments])
         else:
             message = await self.client.fetch_message(message_id)
