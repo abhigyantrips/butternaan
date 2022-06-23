@@ -1,5 +1,3 @@
-import typing
-
 import disnake
 from disnake.ext import commands
 from disnake.utils import get
@@ -11,7 +9,7 @@ class Echo(commands.Cog):
 
     @commands.command()
     @commands.cooldown(1, 15, commands.BucketType.user)
-    async def echo(self, ctx, reply: typing.Optional[disnake.Message]=None, *, message: str):
+    async def echo(self, ctx, reply: disnake.Message | None, *, message: str):
         
         if (ctx.channel.name != "spam") and (not ctx.author.guild_permissions.administrator): 
             return
