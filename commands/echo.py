@@ -8,7 +8,7 @@ class Echo(commands.Cog):
         self.client = client
 
     @commands.command()
-    async def echo(self, ctx, reply: disnake.Message | None, *, message: str):
+    async def echo(self, ctx, reply: typing.Optional[disnake.Message]=None, *, message: str):
         
         if (ctx.channel.name != "spam") and (disnake.Permissions.administrator not in ctx.author.guild_permissions): 
             return
