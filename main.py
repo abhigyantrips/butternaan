@@ -16,6 +16,7 @@ client = commands.Bot(
     intents=disnake.Intents().all(),
     help_command=None,
     activity=disnake.Activity(type=disnake.ActivityType.watching, name="the world burn."),
+    status=disnake.Status.idle,
     test_guilds=[
         int(os.getenv("TEST_GUILDS_ONE")),
         int(os.getenv("TEST_GUILDS_TWO")),
@@ -27,10 +28,6 @@ client.unloadedcogs = []
 
 @client.event
 async def on_ready():
-
-    await client.change_presence(
-        status=disnake.Status.idle,
-    )
 
     print("------------ COMMANDS ------------")
     for filename in os.listdir("./commands"):
