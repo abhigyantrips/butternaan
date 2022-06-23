@@ -24,7 +24,7 @@ class Echo(commands.Cog):
         
         try:
             await reply.reply(message, files=[await a.to_file() for a in ctx.message.attachments])
-        except: disnake.HTTPException:
+        except disnake.HTTPException:
             await ctx.send(message, files=[await a.to_file() for a in ctx.message.attachments])
 
 def setup(client):
