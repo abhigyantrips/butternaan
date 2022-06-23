@@ -10,9 +10,10 @@ class Echo(commands.Cog):
         self.client = client
 
     @commands.command()
+	@commands.cooldown(1, 15, commands.BucketType.user)
     async def echo(self, ctx, reply: typing.Optional[disnake.Message]=None, *, message: str):
         
-        if (ctx.channel.name != "spam") and (disnake.Permissions.administrator not in ctx.author.guild_permissions): 
+        if (ctx.channel.name != "spam") and (ctx.author.guild_permissions.administrator): 
             return
         
         await ctx.message.delete()
