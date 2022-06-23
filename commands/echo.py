@@ -1,3 +1,5 @@
+import typing
+
 import disnake
 from disnake.ext import commands
 from disnake.utils import get
