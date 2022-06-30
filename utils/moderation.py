@@ -1,8 +1,8 @@
+from datetime import datetime, timedelta
+
 import disnake
 from disnake.ext import commands
-from disnake import Option, OptionType, ChannelType, ApplicationCommandInteraction
-
-from datetime import datetime, timedelta
+from disnake import Option, OptionType, ChannelType
 
 
 class Moderation(commands.Cog):
@@ -13,7 +13,7 @@ class Moderation(commands.Cog):
     """All commands are registered under the 'mod' group."""
 
     @commands.slash_command(name="mod", description="Moderation-related commands.")
-    async def mod(self, ctx: ApplicationCommandInteraction):
+    async def mod(self, ctx: disnake.ApplicationCommandInteraction):
         pass
 
     ### PURGE & PRUNE ###
@@ -25,7 +25,7 @@ class Moderation(commands.Cog):
     )
     @commands.has_permissions(manage_messages=True)
     @commands.bot_has_permissions(manage_messages=True)
-    async def purge(self, ctx: ApplicationCommandInteraction, amount):
+    async def purge(self, ctx: disnake.ApplicationCommandInteraction, amount):
 
         if amount >= 100:
             return await ctx.response.send_message(
@@ -42,7 +42,7 @@ class Moderation(commands.Cog):
         options=[Option("user", "The user to delete messages of.", OptionType.user, True)],
     )
     @commands.bot_has_permissions(manage_messages=True)
-    async def prune(self, ctx: ApplicationCommandInteraction, user: disnake.Member):
+    async def prune(self, ctx: disnake.ApplicationCommandInteraction, user: disnake.Member):
 
         await ctx.response.send_message(f"Deleting messages from `{user}` in the last 24 hours.")
 
@@ -76,7 +76,7 @@ class Moderation(commands.Cog):
     @commands.bot_has_permissions(manage_messages=True)
     async def channelprune(
         self,
-        ctx: ApplicationCommandInteraction,
+        ctx: disnake.ApplicationCommandInteraction,
         user: disnake.Member,
         channel: disnake.TextChannel,
     ):
