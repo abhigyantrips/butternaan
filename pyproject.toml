@@ -1,0 +1,23 @@
+[project]
+name = "butternaan"
+version = "0.1.0"
+description = "A personal Discord bot."
+authors = [
+    {name = "Abhigyan Trips",email = "contact@abhi.now"}
+]
+license = "MIT"
+requires-python = ">=3.14"
+dependencies = [
+    "disnake (>=2.12.1,<3.0.0)",
+    "python-dotenv (>=1.2.3,<2.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "python-dotenv (>=1.2.3,<2.0.0)"
+]
